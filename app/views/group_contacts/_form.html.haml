@@ -1,0 +1,22 @@
+= form_for @group_contact do |f|
+  -if @group_contact.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@group_contact.errors.count, "error")} prohibited this group_contact from being saved:"
+      %ul
+        - @group_contact.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :group_id
+    = f.number_field :group_id
+  .field
+    = f.label :contact_id
+    = f.number_field :contact_id
+  .field
+    = f.label :position
+    = f.number_field :position
+  .field
+    = f.label :active
+    = f.check_box :active
+  .actions
+    = f.submit 'Save'

@@ -1,0 +1,25 @@
+= form_for @email_address do |f|
+  -if @email_address.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@email_address.errors.count, "error")} prohibited this email_address from being saved:"
+      %ul
+        - @email_address.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :contact_id
+    = f.number_field :contact_id
+  .field
+    = f.label :email
+    = f.text_field :email
+  .field
+    = f.label :provider
+    = f.text_field :provider
+  .field
+    = f.label :status
+    = f.text_field :status
+  .field
+    = f.label :primary
+    = f.check_box :primary
+  .actions
+    = f.submit 'Save'

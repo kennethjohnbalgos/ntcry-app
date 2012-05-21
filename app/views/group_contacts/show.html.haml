@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Group:
+  = @group_contact.group_id
+%p
+  %b Contact:
+  = @group_contact.contact_id
+%p
+  %b Position:
+  = @group_contact.position
+%p
+  %b Active:
+  = @group_contact.active
+
+= link_to 'Edit', edit_group_contact_path(@group_contact)
+\|
+= link_to 'Back', group_contacts_path

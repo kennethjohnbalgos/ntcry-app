@@ -1,0 +1,124 @@
+@font-face {
+  font-family: 'Questrial';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Questrial'), local('Questrial-Regular'), url('MYWJ4lYm5dbZ1UBuYox79LO3LdcAZYWl9Si6vvxL-qU.woff') format('woff');
+}
+@font-face {
+  font-family: 'Give You Glory';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Give You Glory'), local('GiveYouGlory'), url('DFEWZFgGmfseyIdGRJAxuLIvcyZs3ZcXnterKxC2uN0.woff') format('woff');
+}
+
+body {
+	background: url('sketch.png');
+	color: #444;
+	margin: 0px;
+	font-family: 'Questrial';
+	div.title {
+		width: 600px;
+		text-align: center;
+		margin: 20px auto 40px;
+		height: 100px;
+		font-family: 'Give You Glory';
+		font-size: 120px;
+		line-height: 120px;
+		font-weight: bold;
+	}
+	a {
+		text-decoration: none;
+		color: #999;
+	}
+	a:hover {
+		color: #555;
+	}
+	div.container-notification {
+		height: 50px;
+		div.notice, div.alert {
+			font-size: 14px;
+			background: #fafafa;
+			padding: 5px;
+			color: #666;
+			width: 80%;
+			margin: 0px auto;
+			text-align: center;
+			box-shadow: 1px 2px 6px 
+			rgba(0, 0, 0, 0.5);
+			-moz-box-shadow: 1px 2px 6px rgba(0,0,0, 0.5);
+			-webkit-box-shadow: 1px 2px 6px 
+			rgba(0, 0, 0, 0.5);
+	
+			-webkit-border-bottom-right-radius: 10px;
+			-webkit-border-bottom-left-radius: 10px;
+			-moz-border-radius-bottomright: 10px;
+			-moz-border-radius-bottomleft: 10px;
+			border-bottom-right-radius: 10px;
+			border-bottom-left-radius: 10px;
+		}
+	}
+}
+
+div.session {
+	border: 1px solid red;
+	width: 550px;
+	margin: 10px auto;
+	
+	background: #fafafa;
+	border: 2px solid 
+	white;
+	padding: 20px;
+	text-align: center;
+	box-shadow: 1px 2px 6px 
+	rgba(0, 0, 0, 0.5);
+	-moz-box-shadow: 1px 2px 6px rgba(0,0,0, 0.5);
+	-webkit-box-shadow: 1px 2px 6px 
+	rgba(0, 0, 0, 0.5);
+	
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	
+	div.head {
+		font-size: 28px;
+	}
+	div.links {
+		font-size: 13px;
+		a {
+			padding: 0px 5px;
+			cursor: pointer;
+		}
+	}
+}
+
+table.form-login {
+	margin: 15px auto;
+	td.label {
+		text-align: left;
+		padding: 0px 10px 0px 0px;
+	}
+	td.field {
+		text-align: left;
+	}
+	td.submit {
+		text-align: center;
+		padding: 10px 0px 0px;
+	}
+}
+
+form {
+	div#error_explanation {
+		margin: 10px auto;
+		h2 {
+			display: none;
+		}
+		ul {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+			li {
+				color: #990000;
+			}
+		}
+	}
+}

@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Contact:
+  = @email_address.contact_id
+%p
+  %b Email:
+  = @email_address.email
+%p
+  %b Provider:
+  = @email_address.provider
+%p
+  %b Status:
+  = @email_address.status
+%p
+  %b Primary:
+  = @email_address.primary
+
+= link_to 'Edit', edit_email_address_path(@email_address)
+\|
+= link_to 'Back', email_addresses_path
