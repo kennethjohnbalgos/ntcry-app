@@ -1,17 +1,13 @@
 !!!
 %html
   %head
-    %title Noticery
+    %title Dashboard | Noticery
     = stylesheet_link_tag    "application", :media => "all"
     = javascript_include_tag "application"
     = csrf_meta_tags
-  %body
-    %div.container-notification
-      - if notice.present?
-        %div.notice= notice
-      - elsif alert.present?
-        %div.alert= alert
-    = yield
-    - if current_user.present?
-      %br/
-      = link_to "Sign Out", "/logout"
+  %body#dashboard
+    %div.sidebar
+      = render :partial => 'dashboard/sidebar'
+    %div.main
+      = yield
+    

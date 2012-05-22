@@ -19,7 +19,7 @@ body {
 	div.title {
 		width: 600px;
 		text-align: center;
-		margin: 20px auto 40px;
+		margin: 20px auto 50px;
 		height: 100px;
 		font-family: 'Give You Glory';
 		font-size: 120px;
@@ -60,7 +60,6 @@ body {
 }
 
 div.session {
-	border: 1px solid red;
 	width: 550px;
 	margin: 10px auto;
 	
@@ -121,4 +120,68 @@ form {
 			}
 		}
 	}
+}
+
+div.account_nav {
+	margin-top: -10px;
+	float: right;
+	width: 180px;
+	font-family: 'Questrial';
+	font-size: 13px;
+	text-align: right;
+	div.super_title {
+		line-height: 50px;
+		color: #333;
+		opacity: 0.9;
+		font-size: 50px;
+	}
+}
+
+
+div.super_field {
+	margin-top: 5px;
+	font-size: 16px;
+	text-align: left;
+	width: 350px;
+	input[type=email], input[type=text], input[type=password] {
+		padding: 5px;
+		font-size: 22px;
+		border: 1px solid #CCC;
+	}
+	input[type=email]:hover, input[type=text]:hover, input[type=password]:hover {
+		border: 1px solid #999;
+	}
+	.remember_me {
+		text-align: right;
+		width: 180px;
+		float: right;
+	}
+	.submit {
+		padding-top: 5px;
+		text-align: center;
+	}
+}
+
+.button {
+	font-size: 18px;
+	text-align: center;
+	display: block;
+	padding: 4px 12px;
+	background: #EEE;
+	font-family: 'Questrial';
+	border: 1px solid #CCC;
+	color: #666;
+	cursor: pointer;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	-webkit-box-shadow: 0 1px 0 #F9F9F9 inset,1px 0 0 #F9F9F9 inset;
+	-moz-box-shadow: 0 1px 0 #f9f9f9 inset,1px 0 0 #f9f9f9 inset;
+	box-shadow: 0 1px 0 #F9F9F9 inset,1px 0 0 #F9F9F9 inset;
+}
+
+.button:hover{
+	text-decoration:none;
+	border:1px solid #999;
+	color: #333;
 }

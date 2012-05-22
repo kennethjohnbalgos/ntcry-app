@@ -1,32 +1,28 @@
-%h1 Listing contacts
+%h1 Contacts Manager
 
 %table
   %tr
-    %th User
-    %th First name
-    %th Last name
-    %th Nick name
-    %th Gender
-    %th Birth date
-    %th Source
-    %th Source reference
-    %th
-    %th
+    %th.left First Name
+    %th.left Last Name
+    %th.left Nickname
+    %th.center Gender
+    %th.center Birthday
+    %th.center Source
     %th
 
   - @contacts.each do |contact|
-    %tr
-      %td= contact.user_id
-      %td= contact.first_name
-      %td= contact.last_name
-      %td= contact.nick_name
-      %td= contact.gender
-      %td= contact.birth_date
-      %td= contact.source
-      %td= contact.source_reference
-      %td= link_to 'Show', contact
-      %td= link_to 'Edit', edit_contact_path(contact)
-      %td= link_to 'Destroy', contact, :confirm => 'Are you sure?', :method => :delete
+    %tr{:class=>"#{cycle('odd', 'even')}"}
+      %td.left= contact.first_name
+      %td.left= contact.last_name
+      %td.left= contact.nick_name
+      %td.center= contact.gender_name
+      %td.center= contact.birth_date
+      %td.center= contact.source
+      %td.buttons
+        = link_to "View", contact
+        = link_to "Update", edit_contact_path(contact)
+        = link_to "Delete", contact,
+          :confirm => "Are you sure you want to delete #{contact.first_name} #{contact.last_name} from your contacts?", :method => :delete
 
 %br
 
