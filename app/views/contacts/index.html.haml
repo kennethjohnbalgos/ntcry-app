@@ -1,28 +1,29 @@
 %h1 Contacts Manager
-
 %table
   %tr
-    %th.left First Name
-    %th.left Last Name
-    %th.left Nickname
-    %th.center Gender
-    %th.center Birthday
-    %th.center Source
+    - column_name = 'first_name'
+    %th.left{class: "#{'active' if @order.split(' ').first == column_name}"}
+      = link_to "First Name", controller: 'contacts', order: "#{column_name} #{'DESC' if @order.split(' ').size == 1}"
+    - column_name = 'last_name'
+    %th.left{class: "#{'active' if @order.split(' ').first == column_name}"}
+      = link_to "Last Name", controller: 'contacts', order: "#{column_name} #{'DESC' if @order.split(' ').size == 1}"
+    - column_name = 'nick_name'
+    %th.left{class: "#{'active' if @order.split(' ').first == column_name}"}
+      = link_to "Nick Name", controller: 'contacts', order: "#{column_name} #{'DESC' if @order.split(' ').size == 1}"
+    - column_name = 'gender'
+    %th.center{class: "#{'active' if @order.split(' ').first == column_name}"}
+      = link_to "Gender", controller: 'contacts', order: "#{column_name} #{'DESC' if @order.split(' ').size == 1}"
+    - column_name = 'birth_date'
+    %th.center{class: "#{'active' if @order.split(' ').first == column_name}"}
+      = link_to "Birthday", controller: 'contacts', order: "#{column_name} #{'DESC' if @order.split(' ').size == 1}"
+    - column_name = 'source'
+    %th.center{class: "#{'active' if @order.split(' ').first == column_name}"}
+      = link_to "Source", controller: 'contacts', order: "#{column_name} #{'DESC' if @order.split(' ').size == 1}"
     %th
 
   - @contacts.each do |contact|
     %tr{:class=>"#{cycle('odd', 'even')}"}
-      %td.left= contact.first_name
-      %td.left= contact.last_name
-      %td.left= contact.nick_name
-      %td.center= contact.gender_name
-      %td.center= contact.birth_date
-      %td.center= contact.source
-      %td.buttons
-        = link_to "View", contact
-        = link_to "Update", edit_contact_path(contact)
-        = link_to "Delete", contact,
-          :confirm => "Are you sure you want to delete #{contact.first_name} #{contact.last_name} from your contacts?", :method => :delete
+      = render :partial => 'contact', locals: {contact: contact}
 
 %br
 

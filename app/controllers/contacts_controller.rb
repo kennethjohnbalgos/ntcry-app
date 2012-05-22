@@ -3,7 +3,8 @@ class ContactsController < ApplicationController
   # GET /contacts
   # GET /contacts.json
   def index
-    @contacts = Contact.where(user_id: current_user.id)
+    @order = params[:order] || "first_name"
+    @contacts = Contact.where(user_id: current_user.id).order(@order)
 
     respond_to do |format|
       format.html # index.html.erb

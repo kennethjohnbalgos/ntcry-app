@@ -8,16 +8,15 @@ $sidebar_width: 200px;
 	overflow-y: scroll;
 	.sidebar{
 		width: $sidebar_width;
-		min-height: 450px;
 		position: fixed;
-		top: 0;
-		left: 0;
+		top: 20px;
+		left: 20px;
 	
 		background: #fafafa;
 		border: 2px solid white;
 		border-left: none;
 		border-top: none;
-		padding: 5px 10px;
+		padding: 10px 10px 25px;
 		text-align: right;
 		box-shadow: 1px 2px 6px rgba(0, 0, 0, 0.5);
 		-moz-box-shadow: 1px 2px 6px rgba(0,0,0, 0.5);
@@ -48,7 +47,7 @@ $sidebar_width: 200px;
 	}
 	.main {
 		margin: 20px;
-		margin-left: $sidebar_width + 40;
+		margin-left: $sidebar_width + 60;
 		min-height: 500px;
 	
 		background: #fafafa;
@@ -79,6 +78,15 @@ $sidebar_width: 200px;
 				border-bottom: 1px solid #aaa;
 				border-spacing: 0px;
 				padding: 2px 5px;
+				a {
+					color: #555;
+					&:hover {
+						color: #888;
+					}
+				}
+				&.active {
+					background: #cecece;
+				}
 			}
 			tr.even {
 				background: #f6f6f6;
