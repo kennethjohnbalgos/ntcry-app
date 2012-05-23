@@ -1,0 +1,12 @@
+%td.left= contact.first_name
+%td.left= contact.last_name
+%td.left= contact.nick_name
+%td.center= contact.gender_name
+%td.center= contact.birth_date
+%td.center= contact.source
+%td.buttons
+  = link_to "View", contact
+  = link_to "Update", edit_contact_path(contact)
+  = link_to "Delete", contact,
+    :confirm => "Are you sure you want to delete #{contact.first_name} #{contact.last_name} from your contacts?",
+    :method => :delete
