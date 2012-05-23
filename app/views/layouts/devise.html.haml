@@ -6,8 +6,8 @@
     = javascript_include_tag "application"
     = csrf_meta_tags
   %body
-    - if Rails.env == 'development'
-      %div.container-notification
+    %div.container-notification
+      - if Rails.env == 'development'
         - if notice.present?
           %div.notice= notice
         - elsif alert.present?
