@@ -6,11 +6,12 @@
     = javascript_include_tag "application"
     = csrf_meta_tags
   %body
-    %div.container-notification
-      - if notice.present?
-        %div.notice= notice
-      - elsif alert.present?
-        %div.alert= alert
+    - if Rails.env == 'development'
+      %div.container-notification
+        - if notice.present?
+          %div.notice= notice
+        - elsif alert.present?
+          %div.alert= alert
     %div.title
       = "Noticery"
       %div.subtitle= "The art of BULK messaging"
