@@ -11,7 +11,16 @@
         %div.notice= notice
       - elsif alert.present?
         %div.alert= alert
-    = yield
-    - if current_user.present?
-      %br/
-      = link_to "Sign Out", "/logout"
+    %div.title
+      = "Noticery"
+      %div.subtitle= "The art of BULK messaging"
+    - if Rails.env == 'development'
+      = yield
+      - if current_user.present?
+        %br/
+        = link_to "Sign Out", "/logout"
+    - else
+      %div.error
+        = "Wait for it."
+        %div.note
+          = "- Coming Soon -"
