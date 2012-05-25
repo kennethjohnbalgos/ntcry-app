@@ -44,6 +44,6 @@
       $("#gender_radio").buttonset();
   %div.super_field
     %div.submit
-      = f.submit "Save", class: 'button', onclick: "show_spinner(this)"
+      = f.submit "Save", class: 'button disabled', onclick: "show_spinner(this)", disabled: true
 %script
   $('form#contact_form').validate();
