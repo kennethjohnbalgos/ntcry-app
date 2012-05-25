@@ -46,10 +46,13 @@ function show_modal(content){
 	})
 }
 
-function hide_modal(){
+function hide_modal(msg){
 	$("div.modal_space").fadeToggle('fast',function(){
-		$("div.dimmer").fadeToggle();
-		$('div.modal div.html').html('');
+		$("div.dimmer").fadeToggle('fast',function(){
+			if(msg)
+				add_activity(msg);
+			$('div.modal div.html').html('');
+		});
 	})
 }
 

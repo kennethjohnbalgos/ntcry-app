@@ -48,17 +48,13 @@ class ContactsController < ApplicationController
     params[:contact][:user_id] = current_user.id
     params[:contact][:source] = "Noticery"
     params[:contact][:source_reference] = ""
-    @contact = Contact.new(params[:contact])
-
-    respond_to do |format|
-      if @contact.save
-        format.html { redirect_to contacts_path, notice: 'Contact was successfully created.' }
-        format.json { render json: @contact, status: :created, location: @contact }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @contact.errors, status: :unprocessable_entity }
-      end
-    end
+    @contact = Contact.create(params[:contact])
+    @notice = 'Contact was successfully created'
+    
+    @order = session[:order]
+    @contacts = Contact.where(user_id: current_user.id).order(@order)
+    
+    renderJS
   end
 
   # PUT /contacts/1
