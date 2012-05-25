@@ -11,8 +11,14 @@
   src: local('Give You Glory'), local('GiveYouGlory'), url('DFEWZFgGmfseyIdGRJAxuLIvcyZs3ZcXnterKxC2uN0.woff') format('woff');
 }
 
+.loader {
+	width: 22px;
+	height: 22px;
+	margin: 0px 0 -5px 5px;
+}
+
 body {
-	background: url('sketch.png');
+	background: url('pattern_sketch.png');
 	color: #444;
 	margin: 0px;
 	font-family: 'Questrial';
@@ -179,14 +185,14 @@ div.super_field {
 	}
 	.submit {
 		padding-top: 5px;
-		text-align: center;
+		text-align: left;
 	}
 }
 
 .button {
 	font-size: 18px;
 	text-align: center;
-	display: block;
+	display: inline-block;
 	padding: 4px 12px;
 	background: #EEE;
 	font-family: 'Questrial';

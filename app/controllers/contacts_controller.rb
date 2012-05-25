@@ -3,13 +3,19 @@ class ContactsController < ApplicationController
   # GET /contacts
   # GET /contacts.json
   def index
-    @order = params[:order] || "first_name"
+    
+    session[:order] = "first_name" unless session[:order].present?
+    @order = session[:order]
+    Rails.logger.info ">>> #{@order.to_json}"
     @contacts = Contact.where(user_id: current_user.id).order(@order)
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @contacts }
-    end
+    renderHTML(@contacts)
+  end
+  
+  def sort
+    session[:order] = params[:order]
+    @order = session[:order]
+    @contacts = Contact.where(user_id: current_user.id).order(@order)
+    renderJS
   end
 
   # GET /contacts/1
@@ -28,10 +34,7 @@ class ContactsController < ApplicationController
   def new
     @contact = Contact.new
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @contact }
-    end
+    renderJS
   end
 
   # GET /contacts/1/edit
@@ -43,11 +46,13 @@ class ContactsController < ApplicationController
   # POST /contacts.json
   def create
     params[:contact][:user_id] = current_user.id
+    params[:contact][:source] = "Noticery"
+    params[:contact][:source_reference] = ""
     @contact = Contact.new(params[:contact])
 
     respond_to do |format|
       if @contact.save
-        format.html { redirect_to @contact, notice: 'Contact was successfully created.' }
+        format.html { redirect_to contacts_path, notice: 'Contact was successfully created.' }
         format.json { render json: @contact, status: :created, location: @contact }
       else
         format.html { render action: "new" }
@@ -63,7 +68,7 @@ class ContactsController < ApplicationController
 
     respond_to do |format|
       if @contact.update_attributes(params[:contact])
-        format.html { redirect_to @contact, notice: 'Contact was successfully updated.' }
+        format.html { redirect_to contacts_path, notice: 'Contact was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

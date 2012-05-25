@@ -21,6 +21,8 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
+
 gem 'devise', '~> 2.0.0'
 gem 'rake'
 gem 'will_paginate', '~> 3.0'

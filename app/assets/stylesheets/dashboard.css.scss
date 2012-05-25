@@ -2,10 +2,57 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-$sidebar_width: 200px;
+$sidebar_width: 230px;
 
 #dashboard{
 	overflow-y: scroll;
+	.dimmer {
+		display: none;
+		z-index: 999;
+		width: 100%;
+		height: 100%;
+		position: fixed;
+		top: 0;
+		left: 0;
+		opacity: 0.9;
+		background: url('pattern_linenblack.png');
+	}
+	.modal_space {
+		display: none;
+		z-index: 1001;
+		width: 100%;
+		height: 100%;
+		position: fixed;
+		.modal {
+			z-index: 1000;
+			width: 350px;
+			min-height: 200px;
+			margin: 50px auto;
+			background: #fafafa;
+			border: 2px solid white;
+			padding: 20px;
+			text-align: center;
+			box-shadow: 1px 2px 6px 
+			rgba(0, 0, 0, 0.5);
+			-moz-box-shadow: 1px 2px 6px rgba(0,0,0, 0.5);
+			-webkit-box-shadow: 1px 2px 6px 
+			rgba(0, 0, 0, 0.5);
+
+			.close {
+				float: right;
+				opacity: 0.8;
+				margin: -40px -23px 0 0;
+			}
+			
+			.modal_title {
+				text-align: left;
+				font-size: 28px;
+				margin-bottom: 20px;
+				color: #666666;
+				font-weight: normal;
+			}
+		}
+	}
 	.sidebar{
 		width: $sidebar_width;
 		position: fixed;
@@ -16,7 +63,7 @@ $sidebar_width: 200px;
 		border: 2px solid white;
 		border-left: none;
 		border-top: none;
-		padding: 10px 10px 25px;
+		padding: 10px 10px 5px;
 		text-align: right;
 		box-shadow: 1px 2px 6px rgba(0, 0, 0, 0.5);
 		-moz-box-shadow: 1px 2px 6px rgba(0,0,0, 0.5);
@@ -46,6 +93,11 @@ $sidebar_width: 200px;
 			margin-right: 5px;
 			text-align: right;
 		}
+		
+		#activity {
+			margin: 25px 0 0;
+			text-align: center;
+		}
 	}
 	.main {
 		margin: 20px;
@@ -62,15 +114,46 @@ $sidebar_width: 200px;
 		-moz-box-shadow: 1px 2px 6px rgba(0,0,0, 0.5);
 		-webkit-box-shadow: 1px 2px 6px rgba(0, 0, 0, 0.5);
 		
-		h1 {
-			text-align: left;
-			line-height: 40px;
-			color: #333;
-			margin: 5px;
-			opacity: 0.9;
-			font-weight: normal;
-			font-size: 40px;
+		div.header {
+			padding: 0;
+			div.main_title {
+				float: left;
+				text-align: left;
+				line-height: 40px;
+				color: #333;
+				margin: 0px;
+				opacity: 0.9;
+				font-weight: normal;
+				font-size: 40px;
+			}
+		
+			div.head_options {
+				padding: 0;
+				a.head_link {
+					div.link_space {
+						margin: 0 0 0 10px;
+						height: 45px;
+						float: right;
+						text-align: center;
+						color: #555;
+						font-size: 12px;
+						line-height: 12px;
+						img.icon {
+							width: 25px;
+							height: 25px;
+						}
+						&:hover {
+							opacity: 0.8;
+							color: #555;
+						}
+					}
+					&:hover {
+						color: #555;
+					}
+				}
+			}
 		}
+		
 		
 		table {
 			width: 100%;

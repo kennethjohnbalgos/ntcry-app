@@ -1,30 +1,12 @@
-%h1 Contacts Manager
-%table
-  %tr
-    - column_name = 'first_name'
-    %th.left{class: "#{'active' if @order.split(' ').first == column_name}"}
-      = link_to "First Name", controller: 'contacts', order: "#{column_name} #{'DESC' if @order.split(' ').size == 1}"
-    - column_name = 'last_name'
-    %th.left{class: "#{'active' if @order.split(' ').first == column_name}"}
-      = link_to "Last Name", controller: 'contacts', order: "#{column_name} #{'DESC' if @order.split(' ').size == 1}"
-    - column_name = 'nick_name'
-    %th.left{class: "#{'active' if @order.split(' ').first == column_name}"}
-      = link_to "Nick Name", controller: 'contacts', order: "#{column_name} #{'DESC' if @order.split(' ').size == 1}"
-    - column_name = 'gender'
-    %th.center{class: "#{'active' if @order.split(' ').first == column_name}"}
-      = link_to "Gender", controller: 'contacts', order: "#{column_name} #{'DESC' if @order.split(' ').size == 1}"
-    - column_name = 'birth_date'
-    %th.center{class: "#{'active' if @order.split(' ').first == column_name}"}
-      = link_to "Birthday", controller: 'contacts', order: "#{column_name} #{'DESC' if @order.split(' ').size == 1}"
-    - column_name = 'source'
-    %th.center{class: "#{'active' if @order.split(' ').first == column_name}"}
-      = link_to "Source", controller: 'contacts', order: "#{column_name} #{'DESC' if @order.split(' ').size == 1}"
-    %th
-
-  - @contacts.each do |contact|
-    %tr{:class=>"#{cycle('odd', 'even')}"}
-      = render :partial => 'contact', locals: {contact: contact}
-
-%br
-
-= link_to 'New Contact', new_contact_path
+%div.header
+  %div.main_title
+    = "Contacts Manager"
+  %div.head_options
+    = link_to head_icon_link('icon_magnifier.png','Find'), new_contact_path, 
+      class: 'head_link', remote: true
+    = link_to head_icon_link('icon_import.png','Import'), new_contact_path,
+      class: 'head_link', remote: true
+    = link_to head_icon_link('icon_plus.png','Add'), new_contact_path,
+      class: 'head_link', remote: true, onclick: "add_activity('Opening <b>Add Contact</b> window')"
+%div#results
+  = render :partial => "list", locals: {contacts: @contacts}

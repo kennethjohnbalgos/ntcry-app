@@ -5,26 +5,35 @@
       %ul
         - @contact.errors.full_messages.each do |msg|
           %li= msg
-  .field
-    = f.label :first_name
+  %div.super_field
+    = f.label :first_name, "First Name"
+    %br/
     = f.text_field :first_name
-  .field
-    = f.label :last_name
+  %div.super_field
+    = f.label :last_name, "Last Name"
+    %br/
     = f.text_field :last_name
-  .field
-    = f.label :nick_name
+  %div.super_field
+    = f.label :nick_name, "Nick Name"
+    %br/
     = f.text_field :nick_name
-  .field
-    = f.label :gender
-    = f.text_field :gender
-  .field
-    = f.label :birth_date
-    = f.date_select :birth_date
-  .field
-    = f.label :source
-    = f.text_field :source
-  .field
-    = f.label :source_reference
-    = f.text_field :source_reference
-  .actions
-    = f.submit 'Save'
+  %div.super_field
+    = f.label :birth_date, "Birth Date"
+    %br/
+    = f.text_field :birth_date, id: 'birth_date'
+    %script
+      $("#birth_date").datepicker({changeMonth: true, changeYear: true, yearRange: '-65:-0'});
+      $("#gender_radio").buttonset().find('label').width(173);
+  %div.super_field
+    %label Gender
+    %br/
+    %div#gender_radio
+      = f.radio_button :gender, "M"
+      = f.label :gender_m, "Male"
+      = f.radio_button :gender, "F"
+      = f.label :gender_f, "Female"
+    %script
+      $("#gender_radio").buttonset();
+  %div.super_field
+    %div.submit
+      = f.submit "Save", class: 'button', onclick: "show_spinner(this)"
