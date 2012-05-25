@@ -1,4 +1,4 @@
-= form_for @contact do |f|
+= form_for @contact, validate: true, html: {id: 'contact_form'} do |f|
   -if @contact.errors.any?
     #error_explanation
       %h2= "#{pluralize(@contact.errors.count, "error")} prohibited this contact from being saved:"
@@ -6,21 +6,29 @@
         - @contact.errors.full_messages.each do |msg|
           %li= msg
   %div.super_field
+    %div.error_space
     = f.label :first_name, "First Name"
     %br/
-    = f.text_field :first_name
+    %span.field_space
+      = f.text_field :first_name
   %div.super_field
+    %div.error_space
     = f.label :last_name, "Last Name"
     %br/
-    = f.text_field :last_name
+    %span.field_space
+      = f.text_field :last_name
   %div.super_field
+    %div.error_space
     = f.label :nick_name, "Nick Name"
     %br/
-    = f.text_field :nick_name
+    %span.field_space
+      = f.text_field :nick_name
   %div.super_field
+    %div.error_space
     = f.label :birth_date, "Birth Date"
     %br/
-    = f.text_field :birth_date, id: 'birth_date'
+    %span.field_space
+      = f.text_field :birth_date, id: 'birth_date'
     %script
       $("#birth_date").datepicker({changeMonth: true, changeYear: true, yearRange: '-65:-0'});
       $("#gender_radio").buttonset().find('label').width(173);
@@ -37,3 +45,5 @@
   %div.super_field
     %div.submit
       = f.submit "Save", class: 'button', onclick: "show_spinner(this)"
+%script
+  $('form#contact_form').validate();

@@ -13,4 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.ui.all
+//= require rails.validations
+//= require rails.validations.callbacks
 //= require_tree .

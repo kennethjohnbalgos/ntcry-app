@@ -1,3 +1,9 @@
+GIT
+  remote: https://github.com/bcardarella/client_side_validations.git
+  revision: f74b9c301850ff66cf563bfe0845364d1823eb99
+  specs:
+    client_side_validations (3.2.0.beta.3)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -128,6 +134,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  client_side_validations (= 3.2.0.beta.3)!
   coffee-rails (~> 3.2.1)
   devise (~> 2.0.0)
   execjs

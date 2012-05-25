@@ -175,9 +175,6 @@ div.super_field {
 		font-size: 22px;
 		border: 1px solid #CCC;
 	}
-	input[type=email]:hover, input[type=text]:hover, input[type=password]:hover {
-		border: 1px solid #999;
-	}
 	.remember_me {
 		text-align: right;
 		width: 180px;
@@ -186,6 +183,11 @@ div.super_field {
 	.submit {
 		padding-top: 5px;
 		text-align: left;
+	}
+	.error_space {
+		float: right;
+		color: #990000;
+		font-size: 13px;
 	}
 }
 
