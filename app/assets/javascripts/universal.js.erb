@@ -1,0 +1,48 @@
+jQuery(document).ready(function() {
+	if($("div.alert")){
+		$("div.alert").delay(5000).slideUp()
+	}
+	if($("div.notice")){
+		$("div.notice").delay(5000).slideUp()
+	}
+})
+
+function show_spinner(el){
+	loader = "<img src=<%= asset_path 'loader.gif'%> class='loader'>"
+	$(el).parent().append(loader);
+}
+
+function show_modal(content){
+	$('div.modal div.html').html(content);
+	$("div.dimmer").fadeToggle('fast',function(){
+		$("div.modal_space").fadeToggle()
+	})
+}
+
+function hide_modal(){
+	$("div.modal_space").fadeToggle('fast',function(){
+		$("div.dimmer").fadeToggle();
+		$('div.modal div.html').html('');
+	})
+}
+
+function add_activity(msg){
+	id = random_number();
+	el = ""
+	el += "<div id='"+id+"' style='display:none'>"
+		el += msg
+	el += "</div>"
+	$('div#activity').append(el);
+	$('#'+id).slideToggle();
+	$('#'+id).delay(5000).slideToggle();
+}
+
+function remove_activity(id){
+	$('#'+id).slideToggle('slow',function(){
+		$(this).remove();
+	});
+}
+
+function random_number(){
+	return Math.floor(Math.random()*999999999)
+}

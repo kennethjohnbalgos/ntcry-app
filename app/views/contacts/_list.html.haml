@@ -1,0 +1,36 @@
+%table
+  %tr
+    - column_name = 'first_name'
+    %th.left{class: "#{'active' if @order.split(' ').first == column_name}"}
+      = link_to "First Name", 
+        "contacts_sort?order=#{column_name} #{'DESC' if @order.split(' ').size == 1}",
+        {remote: true}
+    - column_name = 'last_name'
+    %th.left{class: "#{'active' if @order.split(' ').first == column_name}"}
+      = link_to "Last Name", 
+        "contacts_sort?order=#{column_name} #{'DESC' if @order.split(' ').size == 1}",
+        {remote: true}
+    - column_name = 'nick_name'
+    %th.left{class: "#{'active' if @order.split(' ').first == column_name}"}
+      = link_to "Nick Name", 
+        "contacts_sort?order=#{column_name} #{'DESC' if @order.split(' ').size == 1}",
+        {remote: true}
+    - column_name = 'gender'
+    %th.center{class: "#{'active' if @order.split(' ').first == column_name}"}
+      = link_to "Gender", 
+        "contacts_sort?order=#{column_name} #{'DESC' if @order.split(' ').size == 1}",
+        {remote: true}
+    - column_name = 'birth_date'
+    %th.center{class: "#{'active' if @order.split(' ').first == column_name}"}
+      = link_to "Birthday", 
+        "contacts_sort?order=#{column_name} #{'DESC' if @order.split(' ').size == 1}",
+        {remote: true}
+    - column_name = 'source'
+    %th.center{class: "#{'active' if @order.split(' ').first == column_name}"}
+      = link_to "Source", 
+        "contacts_sort?order=#{column_name} #{'DESC' if @order.split(' ').size == 1}",
+        {remote: true}
+    %th
+  - @contacts.each do |contact|
+    %tr{:class=>"#{cycle('odd', 'even')}"}
+      = render :partial => 'contact', locals: {contact: contact}

@@ -1,0 +1,2 @@
+$("div#results").html("<%= escape_javascript(render :partial => 'list', locals: {contacts: @contacts}) %>");
+add_activity("Contacts sorted by <b><%= @order.gsub('_',' ').titleize.gsub('Desc','').strip %></b> <%= @order.include?('DESC') ? '(Z-A)' : '(A-Z)' %>")
