@@ -10,25 +10,25 @@
     = f.label :first_name, "First Name"
     %br/
     %span.field_space
-      = f.text_field :first_name
+      = f.text_field :first_name, autocomplete: 'off'
   %div.super_field
     %div.error_space
     = f.label :last_name, "Last Name"
     %br/
     %span.field_space
-      = f.text_field :last_name
+      = f.text_field :last_name, autocomplete: 'off'
   %div.super_field
     %div.error_space
     = f.label :nick_name, "Nick Name"
     %br/
     %span.field_space
-      = f.text_field :nick_name
+      = f.text_field :nick_name, autocomplete: 'off'
   %div.super_field
     %div.error_space
     = f.label :birth_date, "Birth Date"
     %br/
     %span.field_space
-      = f.text_field :birth_date, id: 'birth_date'
+      = f.text_field :birth_date, id: 'birth_date', autocomplete: 'off'
     %script
       $("#birth_date").datepicker({changeMonth: true, changeYear: true, yearRange: '-65:-0'});
       $("#gender_radio").buttonset().find('label').width(173);
@@ -44,6 +44,6 @@
       $("#gender_radio").buttonset();
   %div.super_field
     %div.submit
-      = f.submit "Save", class: 'button disabled', onclick: "show_spinner(this)", disabled: true
+      = f.submit "Save", class: 'button', onclick: "submit_contact($(this)); return false;"
 %script
   $('form#contact_form').validate();

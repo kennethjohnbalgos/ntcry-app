@@ -12,6 +12,33 @@ jQuery(document).ready(function() {
 	});
 })
 
+
+function submit_contact(submit){
+	form = submit.parents().find('form');
+	var disabled = false; 
+	
+	form.children().find('input').each(function(){
+		$(this).blur();
+	})
+	
+	form.children().find('.error_space').each(function(){
+		if($(this).html() != ""){
+			disabled = true;
+		}
+	})
+	
+	if(disabled){
+		form.children().find('input[type=submit]').css('opacity',0.7);
+		form.children().find('input[type=submit]').attr('disabled',true);
+	}else{
+		form.children().find('input[type=submit]').css('opacity',1);
+		form.children().find('input[type=submit]').attr('disabled',false);
+		show_spinner(submit);
+		form.submit();
+	}
+}
+
+
 function validate_fields(form){
 	var disabled = false; 
 	
@@ -28,6 +55,7 @@ function validate_fields(form){
 	if(disabled){
 		form.children().find('input[type=submit]').css('opacity',0.7);
 		form.children().find('input[type=submit]').attr('disabled',true);
+		return false;
 	}else{
 		form.children().find('input[type=submit]').css('opacity',1);
 		form.children().find('input[type=submit]').attr('disabled',false);
