@@ -4,9 +4,12 @@
   %div.head_options
     = link_to head_icon_link('icon_magnifier.png','Find'), new_contact_path, 
       class: 'head_link', remote: true
+    = link_to head_icon_link('icon_mark.png','Delete'), "#",
+      class: 'head_link', remote: true, id: 'contact_delete'
     = link_to head_icon_link('icon_import.png','Import'), new_contact_path,
       class: 'head_link', remote: true
     = link_to head_icon_link('icon_plus.png','Add'), new_contact_path,
       class: 'head_link', remote: true, onclick: "add_activity('Opening <b>Add Contact</b> window')"
+  = render :partial => "delete"
 %div#results
   = render :partial => "list", locals: {contacts: @contacts}

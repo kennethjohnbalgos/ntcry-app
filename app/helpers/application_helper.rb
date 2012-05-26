@@ -10,4 +10,8 @@ module ApplicationHelper
     raw(el)
   end
   
+  def get_contact_from_id(id)
+    Contact.find(id)
+  end
+  
 end

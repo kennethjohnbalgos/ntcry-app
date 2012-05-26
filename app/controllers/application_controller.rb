@@ -15,6 +15,10 @@ class ApplicationController < ActionController::Base
       format.json { render json: results }
     end
   end
+  
+  def get_contact_from_id(id)
+    Contact.find(id)
+  end
 
   protected
 

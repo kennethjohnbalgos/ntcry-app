@@ -43,16 +43,17 @@ function show_spinner(el){
 
 function show_modal(content){
 	$('div.modal div.html').html(content);
-	$("div.dimmer").fadeToggle('fast',function(){
-		$("div.modal_space").fadeToggle()
+	$("div.dimmer").fadeIn('fast',function(){
+		$("div.modal_space").fadeIn()
 	})
 }
 
 function hide_modal(msg){
-	$("div.modal_space").fadeToggle('fast',function(){
-		$("div.dimmer").fadeToggle('fast',function(){
-			if(msg)
+	$("div.modal_space").fadeOut('fast',function(){
+		$("div.dimmer").fadeOut('fast',function(){
+			if(msg){
 				add_activity(msg);
+			}
 			$('div.modal div.html').html('');
 		});
 	})

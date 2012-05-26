@@ -72,6 +72,25 @@ class ContactsController < ApplicationController
       end
     end
   end
+  
+  def request_delete
+    @ids = params[:contact_delete][:ids].split(',')
+    renderJS
+  end
+
+  def confirmed_delete
+    @ids = params[:confirm_delete][:ids].split(',')
+    @ids.each do |id|
+      contact = get_contact_from_id(id)
+      contact.destroy
+    end
+    
+    @notice = "Selected contacts successfully deleted"
+    @order = session[:order]
+    @contacts = Contact.where(user_id: current_user.id).order(@order)
+    
+    renderJS
+  end
 
   # DELETE /contacts/1
   # DELETE /contacts/1.json

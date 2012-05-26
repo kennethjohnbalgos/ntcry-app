@@ -34,5 +34,5 @@
         {remote: true}
     %th
   - @contacts.each do |contact|
-    %tr{:class=>"#{cycle('odd', 'even')}"}
+    %tr{class: "#{cycle('odd', 'even')}", id: "contact_entry_#{contact.id}"}
       = render :partial => 'contact', locals: {contact: contact}
