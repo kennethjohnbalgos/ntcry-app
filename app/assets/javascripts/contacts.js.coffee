@@ -5,9 +5,8 @@
 $ ->
 	$('#contact_form_submit').live 'click', ->
 		submit = $(this)
-		form = submit.parents().find('form')
+		form = submit.parents().find('form#contact_form')
 		disabled = false
-	
 		form.children().find('input').each ->
 			$(this).blur()
 	
@@ -23,6 +22,7 @@ $ ->
 			form.children().find('input[type=submit]').attr('disabled',false)
 			show_spinner(submit)
 			form.submit()
+		false
 		
 	$('#contact_id_toggle').live 'click', ->
 		checked = false
@@ -33,6 +33,7 @@ $ ->
 				$('.contact_id_checkbox').attr('checked',false)
 		else
 			$('.contact_id_checkbox').attr('checked',false)
+		false
 			
 	$('#contact_delete').live 'click', ->
 		if $('.contact_id_checkbox:checked').size() == 0
@@ -44,4 +45,5 @@ $ ->
 			$('#contact_delete_ids').val(ids)
 			$('#contact_delete_form').submit()
 			add_activity('Confirm to delete selected contacts')
+		false
 			

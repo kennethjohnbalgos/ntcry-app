@@ -4,6 +4,10 @@ class Contact < ActiveRecord::Base
   validates_presence_of :first_name, :last_name
   
   def gender_name
-    gender == "M" ? "Male" : "Female"
+    if gender.present?
+      gender == "M" ? "Male" : "Female"
+    else
+      gender = ""
+    end
   end
 end

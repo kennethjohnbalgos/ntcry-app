@@ -10,6 +10,10 @@ module ApplicationHelper
     raw(el)
   end
   
+  def date_format_c(date)
+    date.to_date.strftime("%B %d, %Y")
+  end
+  
   def get_contact_from_id(id)
     Contact.find(id)
   end

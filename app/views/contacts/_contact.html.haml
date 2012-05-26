@@ -7,8 +7,6 @@
 %td.center= contact.birth_date
 %td.center= contact.source
 %td.buttons
-  = link_to "View", contact
+  = link_to "View", {controller: 'contacts', action: 'show', id: contact.id}, 
+    class: "view_contact", remote: true, onclick: "add_activity('Opening contact information')"
   = link_to "Update", edit_contact_path(contact)
-  = link_to "Delete", contact,
-    :confirm => "Are you sure you want to delete #{contact.first_name} #{contact.last_name} from your contacts?",
-    :method => :delete
