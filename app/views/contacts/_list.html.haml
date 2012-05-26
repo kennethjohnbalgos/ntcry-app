@@ -1,20 +1,10 @@
 %table
   %tr
-    - column_name = 'first_name'
     %th.center
       = check_box_tag 'contact_id_toggle', 0, false
+    - column_name = 'first_name'
     %th.left{class: "#{'active' if @order.split(' ').first == column_name}"}
-      = link_to "First Name", 
-        "contacts_sort?order=#{column_name} #{'DESC' if @order.split(' ').size == 1}",
-        {remote: true}
-    - column_name = 'last_name'
-    %th.left{class: "#{'active' if @order.split(' ').first == column_name}"}
-      = link_to "Last Name", 
-        "contacts_sort?order=#{column_name} #{'DESC' if @order.split(' ').size == 1}",
-        {remote: true}
-    - column_name = 'nick_name'
-    %th.left{class: "#{'active' if @order.split(' ').first == column_name}"}
-      = link_to "Nick Name", 
+      = link_to "Name", 
         "contacts_sort?order=#{column_name} #{'DESC' if @order.split(' ').size == 1}",
         {remote: true}
     - column_name = 'gender'

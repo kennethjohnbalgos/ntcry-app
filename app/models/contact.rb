@@ -10,4 +10,16 @@ class Contact < ActiveRecord::Base
       gender = ""
     end
   end
+  
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+  
+  def complete_name
+    if nick_name.present?
+      "#{full_name} - #{nick_name}"
+    else
+      "#{full_name}"
+    end
+  end
 end

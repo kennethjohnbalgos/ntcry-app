@@ -1,8 +1,6 @@
 %td.center
   = check_box_tag 'ids[]', contact.id, false, id: "contact_id_#{contact.id}", class: 'contact_id_checkbox'
-%td.left= contact.first_name
-%td.left= contact.last_name
-%td.left= contact.nick_name
+%td.left= contact.complete_name
 %td.center= contact.gender_name
 %td.center= contact.birth_date
 %td.center= contact.source
