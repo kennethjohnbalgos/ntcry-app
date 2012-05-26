@@ -41,11 +41,22 @@ function show_spinner(el){
 	$(el).parent().append(loader);
 }
 
-function show_modal(content){
-	$('div.modal div.html').html(content);
-	$("div.dimmer").fadeIn('fast',function(){
-		$("div.modal_space").fadeIn()
-	})
+function show_modal(content, msg){
+	if($("div.dimmer").is(':visible')){
+		$("div.modal_space").fadeOut('normal',function(){
+			$('div.modal div.html').html("");
+			$('div.modal div.html').html(content);
+			$("div.modal_space").fadeIn('slow');
+			if(msg){
+				add_activity(msg);
+			}
+		})
+	}else{
+		$('div.modal div.html').html(content);
+		$("div.dimmer").fadeIn('fast',function(){
+			$("div.modal_space").fadeIn('fast');
+		})
+	}
 }
 
 function hide_modal(msg){

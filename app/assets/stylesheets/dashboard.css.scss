@@ -65,6 +65,7 @@ $sidebar_width: 230px;
 		}
 	}
 	.sidebar{
+		z-index: 1500;
 		width: $sidebar_width;
 		position: fixed;
 		top: 20px;

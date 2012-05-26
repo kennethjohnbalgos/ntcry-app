@@ -6,15 +6,17 @@ class ContactsController < ApplicationController
     
     session[:order] = "first_name" unless session[:order].present?
     @order = session[:order]
-    Rails.logger.info ">>> #{@order.to_json}"
-    @contacts = Contact.where(user_id: current_user.id).order(@order)
+    session[:conditions] = "user_id = #{current_user.id} AND status <> 'deleted'" unless session[:conditions].present?
+    @conditions = session[:conditions]
+    @contacts = Contact.where(@conditions).order(@order)
     renderHTML(@contacts)
   end
   
   def sort
     session[:order] = params[:order]
     @order = session[:order]
-    @contacts = Contact.where(user_id: current_user.id).order(@order)
+    @conditions = session[:conditions]
+    @contacts = Contact.where(@conditions).order(@order)
     renderJS
   end
 
@@ -37,6 +39,7 @@ class ContactsController < ApplicationController
   # GET /contacts/1/edit
   def edit
     @contact = Contact.find(params[:id])
+    renderJS
   end
 
   # POST /contacts
@@ -48,8 +51,15 @@ class ContactsController < ApplicationController
     @contact = Contact.create(params[:contact])
     @notice = 'Contact was successfully created'
     
+    @add_another = params[:extra_add_another]
+    if @add_another.to_i == 1
+      @contact = nil
+      @contact = Contact.new 
+    end
+    
     @order = session[:order]
-    @contacts = Contact.where(user_id: current_user.id).order(@order)
+    @conditions = session[:conditions]
+    @contacts = Contact.where(@conditions).order(@order)
     
     renderJS
   end
@@ -58,16 +68,14 @@ class ContactsController < ApplicationController
   # PUT /contacts/1.json
   def update
     @contact = Contact.find(params[:id])
-
-    respond_to do |format|
-      if @contact.update_attributes(params[:contact])
-        format.html { redirect_to contacts_path, notice: 'Contact was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @contact.errors, status: :unprocessable_entity }
-      end
-    end
+    @contact.update_attributes(params[:contact])
+    @notice = 'Contact was successfully updated'
+    
+    @order = session[:order]
+    @conditions = session[:conditions]
+    @contacts = Contact.where(@conditions).order(@order)
+    
+    renderJS
   end
   
   def request_delete
@@ -76,15 +84,15 @@ class ContactsController < ApplicationController
   end
 
   def confirmed_delete
-    @ids = params[:confirm_delete][:ids].split(',')
-    @ids.each do |id|
-      contact = get_contact_from_id(id)
-      contact.destroy
-    end
+    @ids_raw = params[:confirm_delete][:ids]
+    
+    sql = ActiveRecord::Base.connection()
+    sql.execute("UPDATE contacts SET status = 'deleted' WHERE id IN (#{@ids_raw})")
     
     @notice = "Selected contacts successfully deleted"
     @order = session[:order]
-    @contacts = Contact.where(user_id: current_user.id).order(@order)
+    @conditions = session[:conditions]
+    @contacts = Contact.where(@conditions).order(@order)
     
     renderJS
   end

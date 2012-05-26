@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120521080513) do
+ActiveRecord::Schema.define(:version => 20120526144837) do
 
   create_table "contacts", :force => true do |t|
     t.integer  "user_id"
@@ -21,8 +22,9 @@ ActiveRecord::Schema.define(:version => 20120521080513) do
     t.date     "birth_date"
     t.string   "source"
     t.string   "source_reference"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
+    t.string   "status",           :default => "new"
   end
 
   create_table "email_addresses", :force => true do |t|

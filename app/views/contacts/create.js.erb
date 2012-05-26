@@ -1,2 +1,6 @@
-$("div#results").html("<%= escape_javascript(render :partial => 'list', locals: {contacts: @contacts}) %>");
-hide_modal("<%= @notice %>");
+$("div#results").html("<%= escape_javascript(render :partial => 'list', locals: {contacts: @contacts}) %>"); 
+<% if @add_another.to_i == 0 %>
+	hide_modal("<%= @notice %>");
+<% else %>
+	show_modal("<%= escape_javascript(render :partial => 'new') %>","<%= @notice %>")
+<% end %>

@@ -42,8 +42,11 @@
       = f.label :gender_f, "Female"
     %script
       $("#gender_radio").buttonset();
+  = text_field_tag 'extra_add_another', '', class: 'hidden'
   %div.super_field
     %div.submit
-      = f.submit "Save", class: 'button', onclick: "return false;", id: 'contact_form_submit'
+      = f.submit "Save", class: 'button', onclick: "$('#extra_add_another').val(0); return false;", id: 'contact_form_submit'
+      - if params[:action] == 'new' || params[:action] == 'create'
+        = f.submit "Save and Add Another", class: 'button', onclick: "$('#extra_add_another').val(1); return false;", id: 'contact_form_submit'
 %script
   $('form#contact_form').validate();

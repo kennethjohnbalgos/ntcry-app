@@ -8,5 +8,6 @@
 %td.center= contact.source
 %td.buttons
   = link_to "View", {controller: 'contacts', action: 'show', id: contact.id}, 
-    class: "view_contact", remote: true, onclick: "add_activity('Opening contact information')"
-  = link_to "Update", edit_contact_path(contact)
+    remote: true, onclick: "add_activity('Opening View Contact window')"
+  = link_to "Update", edit_contact_path(contact),
+    remote: true, onclick: "add_activity('Opening Update Contact window')"
