@@ -1,0 +1,10 @@
+= form_for :contact_delete, url: {controller: 'contacts', action: 'request_delete'}, html: {id: 'contact_delete_form', remote: true, class: 'hidden'} do |f|
+  %div.super_field
+    %div.error_space
+    = "Delete IDS: "
+    %br/
+    %span.field_space
+      = f.text_field :ids
+  %div.super_field
+    %div.submit
+      = f.submit "Delete", class: 'button', id: 'contact_delete_submit'

@@ -1,0 +1,2 @@
+$("div#results").html("<%= escape_javascript(render :partial => 'list', locals: {contacts: @contacts}) %>");
+hide_modal("<%= @notice %>");

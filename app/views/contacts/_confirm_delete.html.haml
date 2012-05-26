@@ -1,0 +1,23 @@
+%div.modal_title
+  = "Confirmation"
+%div.modal_paragraph
+  = "Are you sure you want to delete the following contacts?"
+- displayed = 0
+- hidden = 0
+- @ids.each do |id|
+  - if displayed < 10
+    - displayed += 1
+    - contact = get_contact_from_id(id)
+    = "#{contact.first_name} #{contact.last_name}"
+    %br/
+  - else
+    - hidden += 1
+= "(and #{hidden} other contact#{'s' if hidden > 1})" if hidden != 0
+
+= form_for :confirm_delete, url: {controller: 'contacts', action: 'confirmed_delete'}, html: {id: 'contact_confirm_delete_form', remote: true, class: ''} do |f|
+  = f.text_field :ids, value: "#{@ids.join(',')}", class: "hidden"
+  %div.super_field
+    %div.submit
+      = f.submit "Delete", class: 'button', id: 'contact_confirm_delete_submit'
+      = link_to_function "Cancel", "hide_modal()"
+    
