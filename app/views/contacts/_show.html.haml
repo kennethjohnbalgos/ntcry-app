@@ -1,0 +1,16 @@
+%div.modal_title
+  = "#{@contact.first_name} #{@contact.last_name}"
+  %div.modal_subtitle
+    - info = Array.new()
+    - info << "\"#{@contact.nick_name}\"" if @contact.nick_name.present?
+    - info << "Born on #{date_format_c(@contact.birth_date)}" if @contact.birth_date.present?
+    - if @contact.gender.present?
+      - gender = @contact.gender == "M" ? "Male" : "Female"
+      - info << gender
+    = info.join(' - ')
+    
+%div.super_field
+  %div.submit
+    = link_to "Update", edit_contact_path(@contact), class: 'button', 
+      remote: true, onclick: "add_activity('Opening Update Contact window')"
+    = link_to_function "Close", "hide_modal()"
