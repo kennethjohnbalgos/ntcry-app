@@ -71,6 +71,8 @@ class ContactsController < ApplicationController
     @contact.update_attributes(params[:contact])
     @notice = 'Contact was successfully updated'
     
+    @add_another = params[:extra_add_another]
+    
     @order = session[:order]
     @conditions = session[:conditions]
     @contacts = Contact.where(@conditions).order(@order)
