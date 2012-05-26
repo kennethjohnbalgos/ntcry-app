@@ -44,6 +44,6 @@
       $("#gender_radio").buttonset();
   %div.super_field
     %div.submit
-      = f.submit "Save", class: 'button', onclick: "submit_contact($(this)); return false;"
+      = f.submit "Save", class: 'button', onclick: "return false;", id: 'contact_form_submit'
 %script
   $('form#contact_form').validate();

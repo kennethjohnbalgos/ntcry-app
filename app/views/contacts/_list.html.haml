@@ -1,6 +1,8 @@
 %table
   %tr
     - column_name = 'first_name'
+    %th.center
+      = check_box_tag 'contact_id_toggle', 0, false
     %th.left{class: "#{'active' if @order.split(' ').first == column_name}"}
       = link_to "First Name", 
         "contacts_sort?order=#{column_name} #{'DESC' if @order.split(' ').size == 1}",
