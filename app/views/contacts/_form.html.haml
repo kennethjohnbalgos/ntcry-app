@@ -30,7 +30,7 @@
     %span.field_space
       = f.text_field :birth_date, id: 'birth_date', autocomplete: 'off'
     %script
-      $("#birth_date").datepicker({changeMonth: true, changeYear: true, yearRange: '-65:-0'});
+      $("#birth_date").datepicker({changeMonth: true, changeYear: true, yearRange: '-65:-0',dateFormat: 'yy-mm-dd'});
       $("#gender_radio").buttonset().find('label').width(173);
   %div.super_field
     %label Gender
