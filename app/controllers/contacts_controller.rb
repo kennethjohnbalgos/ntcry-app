@@ -71,6 +71,11 @@ class ContactsController < ApplicationController
     @contact.update_attributes(params[:contact])
     @notice = 'Contact was successfully updated'
     
+    if @contact.status == 'imported'
+      @contact.status = 'active'
+      @contact.save
+    end
+    
     @add_another = params[:extra_add_another]
     
     @order = session[:order]

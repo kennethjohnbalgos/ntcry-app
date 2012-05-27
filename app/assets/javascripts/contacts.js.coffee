@@ -46,4 +46,11 @@ $ ->
 			$('#contact_delete_form').submit()
 			add_activity('Confirm to delete selected Contacts')
 		false
+		
+	$('.contact_entry_space').live 'mouseover', ->
+		$(this).children().find('.contact_inline_edit_button').show()
+	
+	$('.contact_entry_space').live 'mouseout', ->
+		$(this).children().find('.contact_inline_edit_button').hide()
+	
 			
