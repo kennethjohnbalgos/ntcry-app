@@ -1,10 +1,11 @@
 class Contact < ActiveRecord::Base
-  attr_accessible :birth_date, :first_name, :gender, :last_name, :nick_name, :source, :source_reference, :user_id
+  attr_accessible :birth_date, :first_name, :gender, :last_name, :nick_name, :source, 
+    :source_reference, :user_id, :full_name
   
   has_many :email_addresses
   belongs_to :user
   
-  validates_presence_of :first_name, :last_name
+  validates_presence_of :full_name
   
   def gender_name
     if gender.present?
@@ -24,10 +25,6 @@ class Contact < ActiveRecord::Base
   
   def valid_email_addresses
     self.email_addresses.where("status <> 'deleted'")
-  end
-  
-  def full_name
-    "#{first_name} #{last_name}"
   end
   
   def complete_name

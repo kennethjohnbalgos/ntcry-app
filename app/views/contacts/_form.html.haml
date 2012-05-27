@@ -7,16 +7,10 @@
           %li= msg
   %div.super_field
     %div.error_space
-    = f.label :first_name, "First Name"
+    = f.label :full_name, "Complete Name"
     %br/
     %span.field_space
-      = f.text_field :first_name, autocomplete: 'off'
-  %div.super_field
-    %div.error_space
-    = f.label :last_name, "Last Name"
-    %br/
-    %span.field_space
-      = f.text_field :last_name, autocomplete: 'off'
+      = f.text_field :full_name, autocomplete: 'off'
   %div.super_field
     %div.error_space
     = f.label :nick_name, "Nick Name"
