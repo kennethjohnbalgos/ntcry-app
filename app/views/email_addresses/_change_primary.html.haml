@@ -1,0 +1,6 @@
+= form_for :primary_email_form, 
+  url: {controller: 'email_addresses', action: 'change_primary'},
+  html: {id: 'primary_email_form', remote: true, class: 'hidden'} do |f|
+  = f.text_field :contact_id, value: "#{@contact.id}"
+  = f.text_field :id
+  = f.submit 'Save', class: 'mini_button'
