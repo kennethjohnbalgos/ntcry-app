@@ -4,7 +4,7 @@ class CreateEmailAddresses < ActiveRecord::Migration
       t.integer :contact_id
       t.string :email
       t.string :provider
-      t.string :status
+      t.string :status, default: 'new'
       t.boolean :primary
 
       t.timestamps

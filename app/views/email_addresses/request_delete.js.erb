@@ -1,0 +1,5 @@
+<% if @success %>
+	show_modal("<%= escape_javascript(render :partial => 'email_addresses/confirm_delete', locals: {email: @email}) %>","<%= @notice %>")
+<% else %>
+	add_activity("<%= @notice %>")
+<% end %>

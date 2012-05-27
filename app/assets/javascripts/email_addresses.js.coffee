@@ -6,7 +6,7 @@ $ ->
 	$('#cancel_link').live 'click', ->
 		$('#new_email_form_space').fadeOut 'fast', ->
 			$('#no_email_space').fadeIn()
-			add_activity('Adding email address cancelled')
+			add_activity('Adding Email Address cancelled')
 			
 	$('.primary_contact_email').live 'click', ->
 		$('#primary_email_form_id').val($('.primary_contact_email:checked').val())

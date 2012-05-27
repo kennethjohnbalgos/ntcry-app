@@ -37,13 +37,13 @@ $ ->
 			
 	$('#contact_delete').live 'click', ->
 		if $('.contact_id_checkbox:checked').size() == 0
-			add_activity('Select the contacts you want to delete')
+			add_activity('Select the Contacts you want to delete')
 		else
 			ids = new Array()
 			$('.contact_id_checkbox:checked').each ->
 				ids.push($(this).val())
 			$('#contact_delete_ids').val(ids)
 			$('#contact_delete_form').submit()
-			add_activity('Confirm to delete selected contacts')
+			add_activity('Confirm to delete selected Contacts')
 		false
 			

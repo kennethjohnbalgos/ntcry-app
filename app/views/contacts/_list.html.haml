@@ -17,6 +17,6 @@
     %th
   - @contacts.each do |contact|
     %tr{class: "#{cycle('odd', 'even')}", id: "contact_entry_#{contact.id}"}
-      = render :partial => 'contact', locals: {contact: contact}
+      = render :partial => 'contacts/contact', locals: {contact: contact}
 %script
   $(".contact_list_tip").tipTip({delay: 100, maxWidth: '500px', defaultPosition: 'left'})

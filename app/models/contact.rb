@@ -22,6 +22,10 @@ class Contact < ActiveRecord::Base
     end
   end
   
+  def valid_email_addresses
+    self.email_addresses.where("status <> 'deleted'")
+  end
+  
   def full_name
     "#{first_name} #{last_name}"
   end

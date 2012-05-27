@@ -18,4 +18,8 @@ module ApplicationHelper
     Contact.find(id)
   end
   
+  def get_email_from_id(id)
+    EmailAddress.find(id)
+  end
+  
 end

@@ -1,4 +1,5 @@
 <% if @success %>
+	$("div#results").html("<%= escape_javascript(render partial: 'contacts/list', locals: {contacts: @contacts}) %>"); 
 	show_modal("<%= escape_javascript(render :partial => 'contacts/show', locals: {contact: @contact}) %>")
 	add_activity("<%= @notice %>")
 <% else %>

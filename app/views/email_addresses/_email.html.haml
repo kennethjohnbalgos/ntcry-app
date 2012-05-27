@@ -1,4 +1,11 @@
 %td.center
-  = radio_button_tag 'primary_contact_email', email.id, email.main == 1 ? true : false, class: 'primary_contact_email'
+  = radio_button_tag 'primary_contact_email', email.id, email.main == 1 ? true : false, 
+    class: "primary_contact_email #{'email_fields' if email.main != 1}",
+    title: "#{'Toggle to set this<br/>Email Address as primary' if email.main != 1}"
 %td.left
   = email.email
+%td.right
+  - if email.main == 0
+    = link_to raw(image_tag('minicon_delete.png', class: 'minicon email_fields', title: "Delete this Email Address")),
+      {controller: 'email_addresses', action: 'request_delete', id: email.id},
+      {remote: true}

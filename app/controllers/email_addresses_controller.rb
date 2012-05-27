@@ -25,7 +25,8 @@ class EmailAddressesController < ApplicationController
   # GET /email_addresses/new.json
   def new
     @email_address = EmailAddress.new
-    @total_email = EmailAddress.where(contact_id: params[:contact_id]).count
+    @contact = get_contact_from_id(params[:contact_id])
+    @total_email = @contact.valid_email_addresses.count
     renderJS
   end
 
@@ -45,7 +46,8 @@ class EmailAddressesController < ApplicationController
         @notice = "Email Address already exists"
         @success = false
       else
-        if params[:email_address][:main] == 1
+        if params[:email_address][:main] == "1"
+          Rails.logger.info ">>>>>>>>>> #{params[:email_address][:main]}"
           sql = ActiveRecord::Base.connection()
           sql.execute("UPDATE email_addresses SET main = 0 WHERE contact_id = #{params[:email_address][:contact_id]}")
         end
@@ -54,7 +56,7 @@ class EmailAddressesController < ApplicationController
         @contact = get_contact_from_id(params[:email_address][:contact_id])
         @contact.status = 'active'
         @contact.save
-        unless @contact.email_addresses.count > 1
+        if @contact.email_addresses.count == 1
           @email_address.main = 1
           @email_address.save
         end
@@ -65,6 +67,11 @@ class EmailAddressesController < ApplicationController
       @notice = "Please enter the Email Address"
       @success = false
     end
+    
+    @order = session[:order]
+    @conditions = session[:conditions]
+    @contacts = Contact.where(@conditions).order(@order)
+    
     renderJS
   end
   
@@ -92,6 +99,10 @@ class EmailAddressesController < ApplicationController
       @notice = "Invalid contact's Email Address"
       @success = false
     end
+    
+    @order = session[:order]
+    @conditions = session[:conditions]
+    @contacts = Contact.where(@conditions).order(@order)
       
   end
 
@@ -109,6 +120,27 @@ class EmailAddressesController < ApplicationController
         format.json { render json: @email_address.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def request_delete
+    @email = EmailAddress.find(params[:id])
+    if @email.main == 0
+      @contact = get_contact_from_id(@email.contact_id)
+      @notice = "Confirm to delete an Email Address"
+      @success = true
+    else
+      @notice = "You can't delete a Primary Email"
+      @success = false
+    end
+    renderJS
+  end
+  
+  def confirmed_delete
+    @email = EmailAddress.find(params[:id])
+    @contact = get_contact_from_id(@email.contact_id)
+    @email.status = 'deleted'
+    @email.save
+    renderJS
   end
 
   # DELETE /email_addresses/1

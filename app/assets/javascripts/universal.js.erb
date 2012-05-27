@@ -42,6 +42,7 @@ function show_spinner(el){
 }
 
 function show_modal(content, msg){
+	$('#tiptip_holder').fadeOut();
 	if($("div.dimmer").is(':visible')){
 		$("div.modal_space").fadeOut('normal',function(){
 			$('div.modal div.html').html("");

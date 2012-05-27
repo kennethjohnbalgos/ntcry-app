@@ -4,8 +4,8 @@
     html: {id: 'add_email_form', remote: true} do |f|
     = f.hidden_field :contact_id, value: "#{@contact.id}"
     %td.center
-      = f.check_box :main
-    %td.left
-      = f.text_field :email
+      = f.check_box :main, title: "Check this box to set the<br/>new Email Address as primary", class: 'email_fields'
+    %td.left{colspan: '2'}
+      = f.text_field :email, title: "Enter the new Email Address here", class: "email_fields"
       = f.submit 'Save', class: 'mini_button'
       = link_to_function "Cancel", "", id: 'cancel_link'

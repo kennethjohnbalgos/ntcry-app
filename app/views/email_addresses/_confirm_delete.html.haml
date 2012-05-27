@@ -1,0 +1,16 @@
+%div.modal_title
+  = "Confirmation"
+%div.modal_paragraph
+  = "Are you sure you want to delete this email from #{@contact.full_name}?"
+%br/
+= "#{@email.email}"
+%br/
+%br/
+%div.super_field
+  %div.submit
+    = link_to "Delete",
+      {controller: 'email_addresses', action: 'confirmed_delete', id: @email.id},
+      {id: 'email_confirm_delete_form', remote: true, class: 'button'}
+    = link_to "Cancel", {controller: 'contacts', action: 'show', id: @contact.id}, 
+      remote: true, onclick: "add_activity('Deleting Email Address cancelled')"
+    
