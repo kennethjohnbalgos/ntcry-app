@@ -1,6 +1,6 @@
 %div.contact_header
   %div.contact_show
-    = "#{@contact.first_name} #{@contact.last_name}"
+    = "#{@contact.full_name}"
     %br/
     %div.contact_show_menu
       = link_to "Add Email Address", new_email_address_path(contact_id: @contact.id), class: '', 
@@ -21,6 +21,8 @@
       = image_tag('minicon_checked_user.png', class: 'contact_show_tip', title: "This contact is verified")
     - elsif @contact.status == 'new'
       = image_tag('minicon_warning.png', class: 'contact_show_tip', title: "This contact is unverified:<br/>Add an Email Address to verify")
+    - elsif @contact.status == 'imported'
+      = image_tag('minicon_warning.png', class: 'contact_show_tip', title: "This contact is unverified:<br/>Modify the Name to verify")
     - if @contact.nick_name.present?
       = image_tag('minicon_star_topic.png', class: 'contact_show_tip', title: "You can call #{call} \"#{@contact.nick_name}\"")
     - if @contact.birth_date.present?

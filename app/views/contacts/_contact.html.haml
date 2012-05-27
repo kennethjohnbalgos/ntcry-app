@@ -5,6 +5,8 @@
     = image_tag('minicon_checked_user.png', class: 'minicon contact_list_tip', title: "This contact is verified")
   - elsif contact.status == 'new'
     = image_tag('minicon_warning.png', class: 'minicon contact_list_tip', title: "This contact is unverified:<br/>Add an Email Address to verify")
+  - elsif contact.status == 'imported'
+    = image_tag('minicon_warning.png', class: 'minicon contact_list_tip', title: "This contact is unverified:<br/>Modify the Name to verify")
   = link_to "#{contact.complete_name}", {controller: 'contacts', action: 'show', id: contact.id}, 
     remote: true, onclick: "add_activity('Opening View Contact window')", class: 'name_link'
 %td.left

@@ -1,0 +1,19 @@
+%div.modal_title
+  = "Import Contacts"
+%div.modal_paragraph
+  = "Select a provider where you want to import you contacts from (existing account required):"
+  %br/
+  %br/
+%div.import_select{id: 'import_google'}
+  = image_tag("import_google.png")
+  %br/
+  = link_to "Google",
+    {controller: 'import', action: 'connect', provider: 'gmail'}, 
+    {remote: true, class: 'main_link'}
+%div.import_select{id: 'import_yahoo'}
+  = image_tag("import_yahoo.png")
+  %br/
+  = link_to "Yahoo!",
+    {controller: 'import', action: 'connect', provider: 'yahoo'},
+    {remote: true, class: 'main_link'}
+%br/

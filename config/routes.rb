@@ -9,8 +9,9 @@ NoticeryApp::Application.routes.draw do
   resources :contacts
   
   get "contacts_sort" => 'contacts#sort'
-  match "/import/:importer/callback" => "import#reader"
-  match "/oauth2callback" => "import#reader"
+  match "/contacts/:importer/callback" => "import#reader"
+  match "/gmail-callback" => "import#reader"
+  match "/yahoo-callback" => "import#reader"
   
   match "dashboard" => 'dashboard#index'
   get "home/index"

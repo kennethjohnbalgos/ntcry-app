@@ -1,3 +1,27 @@
 // Place all the styles related to the import controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.import_select {
+	width: 132px;
+	margin: 0px 10px;
+	padding: 0px;
+	display: inline-block;
+	font-size: 20px;
+	line-height: 20px;
+	cursor: pointer;
+	opacity: 0.9;
+	&:hover {
+		opacity: 1;
+	}
+	a.main_link {
+		color: #333;
+		&:hover {
+			color: #333;
+		}
+	}
+	img {
+		padding: 0;
+		margin: 0;
+	}
+}

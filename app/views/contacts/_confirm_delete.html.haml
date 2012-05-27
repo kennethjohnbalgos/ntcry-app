@@ -8,7 +8,7 @@
   - if displayed < 10
     - displayed += 1
     - contact = get_contact_from_id(id)
-    = "#{contact.first_name} #{contact.last_name}"
+    = "#{contact.full_name}"
     %br/
   - else
     - hidden += 1

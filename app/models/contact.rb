@@ -1,6 +1,6 @@
 class Contact < ActiveRecord::Base
   attr_accessible :birth_date, :first_name, :gender, :last_name, :nick_name, :source, 
-    :source_reference, :user_id, :full_name
+    :source_reference, :user_id, :full_name, :status
   
   has_many :email_addresses
   belongs_to :user
