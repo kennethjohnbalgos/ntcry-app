@@ -3,4 +3,6 @@ class EmailAddress < ActiveRecord::Base
   
   has_one :contact
   
+  validates_presence_of :email
+  
 end

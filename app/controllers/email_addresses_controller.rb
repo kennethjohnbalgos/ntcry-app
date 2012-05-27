@@ -38,7 +38,10 @@ class EmailAddressesController < ApplicationController
   # POST /email_addresses.json
   def create
     if params[:email_address][:email].present?
-      if EmailAddress.exists?(contact_id: params[:email_address][:contact_id], email: params[:email_address][:email])
+      if !(params[:email_address][:email].strip =~ /\b[A-Z0-9._%a-z\-]+@(?:[A-Z0-9a-z\-]+\.)+[A-Za-z]{2,4}\z/)
+        @notice = "Invalid Email Address format"
+        @success = false
+      elsif EmailAddress.exists?(contact_id: params[:email_address][:contact_id], email: params[:email_address][:email])
         @notice = "Email Address already exists"
         @success = false
       else
@@ -49,6 +52,13 @@ class EmailAddressesController < ApplicationController
         @email_address = EmailAddress.create(params[:email_address])
         @notice = "Email Address was successfully saved"
         @contact = get_contact_from_id(params[:email_address][:contact_id])
+        @contact.status = 'active'
+        @contact.save
+        unless @contact.email_addresses.count > 1
+          @email_address.main = 1
+          @email_address.save
+        end
+        @email_address = nil
         @success = true
       end
     else

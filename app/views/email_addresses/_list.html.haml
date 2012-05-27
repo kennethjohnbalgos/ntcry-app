@@ -13,5 +13,5 @@
       = ""
     %td{class: 'left'}
       = link_to "Add Email Address", new_email_address_path(contact_id: @contact.id), class: '', 
-        remote: true, onclick: "add_activity('Preparing to add email address')"
+        remote: true
   = render partial: "email_addresses/new"

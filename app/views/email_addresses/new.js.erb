@@ -1,4 +1,4 @@
-if(<%= @total_email %> < 3){
+if(<%= @total_email %> < 5){
 	if($('#no_email_space').is(':visible')){
 		$('#no_email_space').fadeOut('fast',function(){
 			$('#new_email_form_space').fadeIn();
@@ -7,5 +7,5 @@ if(<%= @total_email %> < 3){
 		$('#new_email_form_space').fadeIn();
 	}
 }else{
-	add_activity("Contact can only have 3 addresses")
+	add_activity("Contact can only have 5 addresses")
 }
