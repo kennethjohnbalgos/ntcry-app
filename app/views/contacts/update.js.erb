@@ -1,6 +1,6 @@
 $("div#results").html("<%= escape_javascript(render :partial => 'list', locals: {contacts: @contacts}) %>");
 
-<% if @add_another.to_i == 0 %>
+<% if @add_another.to_i == 2 %>
 	hide_modal("<%= @notice %>");
 <% else %>
 	show_modal("<%= escape_javascript(render :partial => 'show', locals: {contact: @contact}) %>","<%= @notice %>")
