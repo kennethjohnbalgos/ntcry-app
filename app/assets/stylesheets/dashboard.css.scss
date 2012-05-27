@@ -165,36 +165,9 @@ $sidebar_width: 230px;
 				}
 			}
 		}
-		
-		
-		table {
-			width: 100%;
-			border-collapse: collapse;
-			th {
-				background: #dedede;
-				border-bottom: 1px solid #aaa;
-				border-spacing: 0px;
-				padding: 2px 5px;
-				a {
-					color: #555;
-					&:hover {
-						color: #888;
-					}
-				}
-				&.active {
-					background: #cecece;
-				}
-			}
-			tr.even {
-				background: #f6f6f6;
-			}
-			td {
-				border-spacing: 0px;
-				padding: 2px 5px;
-			}
-		}
 	}
 }
+
 
 .left {
 	text-align: left;

@@ -25,11 +25,8 @@ class EmailAddressesController < ApplicationController
   # GET /email_addresses/new.json
   def new
     @email_address = EmailAddress.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @email_address }
-    end
+    @total_email = EmailAddress.where(contact_id: params[:contact_id]).count
+    renderJS
   end
 
   # GET /email_addresses/1/edit
@@ -40,17 +37,25 @@ class EmailAddressesController < ApplicationController
   # POST /email_addresses
   # POST /email_addresses.json
   def create
-    @email_address = EmailAddress.new(params[:email_address])
-
-    respond_to do |format|
-      if @email_address.save
-        format.html { redirect_to @email_address, notice: 'Email address was successfully created.' }
-        format.json { render json: @email_address, status: :created, location: @email_address }
+    if params[:email_address][:email].present?
+      if EmailAddress.exists?(contact_id: params[:email_address][:contact_id], email: params[:email_address][:email])
+        @notice = "Email Address already exists"
+        @success = false
       else
-        format.html { render action: "new" }
-        format.json { render json: @email_address.errors, status: :unprocessable_entity }
+        if params[:email_address][:main] == 1
+          sql = ActiveRecord::Base.connection()
+          sql.execute("UPDATE email_addresses SET main = 0 WHERE contact_id = #{params[:email_address][:contact_id]}")
+        end
+        @email_address = EmailAddress.create(params[:email_address])
+        @notice = "Email Address was successfully saved"
+        @contact = get_contact_from_id(params[:email_address][:contact_id])
+        @success = true
       end
+    else
+      @notice = "Please enter the Email Address"
+      @success = false
     end
+    renderJS
   end
 
   # PUT /email_addresses/1

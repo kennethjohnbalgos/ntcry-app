@@ -3,8 +3,8 @@
     = "#{@contact.first_name} #{@contact.last_name}"
     %br/
     %div.contact_show_menu
-      = link_to "Add Email Address", edit_contact_path(@contact), class: '', 
-        remote: true, onclick: "add_activity('Opening Update Contact window')"
+      = link_to "Add Email Address", new_email_address_path(contact_id: @contact.id), class: '', 
+        remote: true, onclick: "add_activity('Preparing to add email address')"
       %br/
       = link_to "Update Contact", edit_contact_path(@contact), class: '', 
         remote: true, onclick: "add_activity('Opening Update Contact window')"
@@ -26,4 +26,4 @@
     %script
       $(".contact_show_tip").tipTip({delay: 100, maxWidth: '500px', defaultPosition: 'right'})
 %div.contact_content
-  = ""
+  = render partial: "email_addresses/list"

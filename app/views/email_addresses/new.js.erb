@@ -1,0 +1,11 @@
+if(<%= @total_email %> < 3){
+	if($('#no_email_space').is(':visible')){
+		$('#no_email_space').fadeOut('fast',function(){
+			$('#new_email_form_space').fadeIn();
+		});
+	}else{
+		$('#new_email_form_space').fadeIn();
+	}
+}else{
+	add_activity("Contact can only have 3 addresses")
+}

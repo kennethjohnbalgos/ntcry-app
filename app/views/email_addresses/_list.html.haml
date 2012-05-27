@@ -1,0 +1,17 @@
+%table.list_view{id: 'add_email_form'}
+  %tr
+    %th.center{width: '60'}
+      = "Primary"
+    %th.left
+      = "Email Address"
+  - if @contact.email_addresses.count > 0
+    - @contact.email_addresses.each do |email|
+      %tr{class: "#{cycle('odd', 'even')}", id: "contact_email_#{email.id}"}
+        = render :partial => 'email_addresses/email', locals: {email: email}
+  %tr{class: "#{cycle('odd', 'even')}", id: "no_email_space"}
+    %td
+      = ""
+    %td{class: 'left'}
+      = link_to "Add Email Address", new_email_address_path(contact_id: @contact.id), class: '', 
+        remote: true, onclick: "add_activity('Preparing to add email address')"
+  = render partial: "email_addresses/new"

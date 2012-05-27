@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120526144837) do
+ActiveRecord::Schema.define(:version => 20120527080914) do
 
   create_table "contacts", :force => true do |t|
     t.integer  "user_id"
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(:version => 20120526144837) do
     t.string   "email"
     t.string   "provider"
     t.string   "status"
-    t.boolean  "primary"
+    t.integer  "primary"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(:version => 20120526144837) do
     t.integer  "group_id"
     t.integer  "contact_id"
     t.integer  "position"
-    t.boolean  "active"
+    t.integer  "active"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
