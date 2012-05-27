@@ -1,8 +1,13 @@
 %td.center
   = check_box_tag 'ids[]', contact.id, false, id: "contact_id_#{contact.id}", class: 'contact_id_checkbox'
-%td.left= contact.complete_name
-%td.center= contact.gender_name
-%td.center= contact.birth_date
+%td.left
+  - if contact.status == 'active'
+    = image_tag('minicon_checked_user.png', class: 'minicon contact_list_tip', title: "This contact is verified")
+  - elsif contact.status == 'new'
+    = image_tag('minicon_barcode.png', class: 'minicon contact_list_tip', title: "This contact is unverified:<br/>Add an Email Address to verify")
+  = contact.complete_name
+%td.left
+  = contact.primary_email || "(No Email Address)"
 %td.center= contact.source
 %td.buttons
   = link_to "View", {controller: 'contacts', action: 'show', id: contact.id}, 

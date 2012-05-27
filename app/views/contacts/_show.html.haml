@@ -19,6 +19,8 @@
     = image_tag('minicon_contact.png', class: 'contact_show_tip', title: "Added to contacts since #{date_format_c(@contact.created_at)}")
     - if @contact.status == 'active'
       = image_tag('minicon_checked_user.png', class: 'contact_show_tip', title: "This contact is verified")
+    - elsif @contact.status == 'new'
+      = image_tag('minicon_barcode.png', class: 'contact_show_tip', title: "This contact is unverified:<br/>Add an Email Address to verify")
     - if @contact.nick_name.present?
       = image_tag('minicon_star_topic.png', class: 'contact_show_tip', title: "You can call #{call} \"#{@contact.nick_name}\"")
     - if @contact.birth_date.present?

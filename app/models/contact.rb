@@ -14,6 +14,14 @@ class Contact < ActiveRecord::Base
     end
   end
   
+  def primary_email
+    if self.email_addresses.count > 0
+      self.email_addresses.where(main: 1).first.email
+    else
+      nil
+    end
+  end
+  
   def full_name
     "#{first_name} #{last_name}"
   end

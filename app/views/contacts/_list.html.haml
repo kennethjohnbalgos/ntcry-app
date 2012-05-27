@@ -7,16 +7,8 @@
       = link_to "Name", 
         "contacts_sort?order=#{column_name} #{'DESC' if @order.split(' ').size == 1}",
         {remote: true}
-    - column_name = 'gender'
-    %th.center{class: "#{'active' if @order.split(' ').first == column_name}"}
-      = link_to "Gender", 
-        "contacts_sort?order=#{column_name} #{'DESC' if @order.split(' ').size == 1}",
-        {remote: true}
-    - column_name = 'birth_date'
-    %th.center{class: "#{'active' if @order.split(' ').first == column_name}"}
-      = link_to "Birthday", 
-        "contacts_sort?order=#{column_name} #{'DESC' if @order.split(' ').size == 1}",
-        {remote: true}
+    %th.left
+      = "Email Address"
     - column_name = 'source'
     %th.center{class: "#{'active' if @order.split(' ').first == column_name}"}
       = link_to "Source", 
@@ -26,3 +18,5 @@
   - @contacts.each do |contact|
     %tr{class: "#{cycle('odd', 'even')}", id: "contact_entry_#{contact.id}"}
       = render :partial => 'contact', locals: {contact: contact}
+%script
+  $(".contact_list_tip").tipTip({delay: 100, maxWidth: '500px', defaultPosition: 'left'})

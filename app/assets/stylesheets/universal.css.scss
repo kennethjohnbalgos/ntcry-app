@@ -17,6 +17,15 @@
 	margin: 0px 0 -5px 5px;
 }
 
+.minicon {
+	width: 16px;
+	height: 16px;
+	cursor: pointer;
+	&:hover {
+		opacity: 0.7;
+	}
+}
+
 body {
 	background: url('pattern_sketch.png');
 	color: #444;
@@ -143,6 +152,7 @@ table.list_view {
 		border-spacing: 0px;
 		padding: 2px 5px;
 		line-height: 25px;
+		vertical-align: middle;
 	}
 }
 
