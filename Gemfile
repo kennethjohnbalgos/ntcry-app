@@ -23,6 +23,7 @@ end
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'client_side_validations', '3.2.0.beta.3', git: 'https://github.com/bcardarella/client_side_validations.git'
+gem "omnicontacts"
 
 gem 'devise', '~> 2.0.0'
 gem 'rake'
