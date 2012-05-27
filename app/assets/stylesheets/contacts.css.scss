@@ -1,3 +1,43 @@
 // Place all the styles related to the contacts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+div.contact_header {
+	height: 85px;
+	div.contact_show {
+		font-size: 24px;
+		text-align: right;
+		width: 330px;
+		float: right;
+		.contact_show_menu {
+			padding-top: 5px;
+			float: right;
+			font-size: 15px;
+			line-height: 16px;
+			a {
+				padding: 0px 5px;
+				cursor: pointer;
+			}
+		}
+	}
+
+	div.contact_badges {
+		width: 16px;
+		line-height: 16px;
+		float: right;
+		img.contact_show_tip {
+			margin-bottom: 1px;
+			width: 16px;
+			height: 16px;
+			cursor: pointer;
+			&:hover {
+				opacity: 0.7;
+			}
+		}
+	}
+}
+
+div.contact_content {
+	border: 1px solid red;
+	width: 100%;
+}

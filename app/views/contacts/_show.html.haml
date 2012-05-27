@@ -1,16 +1,29 @@
-%div.modal_title
-  = "#{@contact.first_name} #{@contact.last_name}"
-  %div.modal_subtitle
-    - info = Array.new()
-    - info << "\"#{@contact.nick_name}\"" if @contact.nick_name.present?
-    - info << "Born on #{date_format_c(@contact.birth_date)}" if @contact.birth_date.present?
+%div.contact_header
+  %div.contact_show
+    = "#{@contact.first_name} #{@contact.last_name}"
+    %br/
+    %div.contact_show_menu
+      = link_to "Add Email Address", edit_contact_path(@contact), class: '', 
+        remote: true, onclick: "add_activity('Opening Update Contact window')"
+      %br/
+      = link_to "Update Contact", edit_contact_path(@contact), class: '', 
+        remote: true, onclick: "add_activity('Opening Update Contact window')"
+      %br/
+      = link_to_function "Close", "hide_modal()"
+      %br/
+  %div.contact_badges
     - if @contact.gender.present?
-      - gender = @contact.gender == "M" ? "Male" : "Female"
-      - info << gender
-    = info.join(' - ')
-    
-%div.super_field
-  %div.submit
-    = link_to "Update", edit_contact_path(@contact), class: 'button', 
-      remote: true, onclick: "add_activity('Opening Update Contact window')"
-    = link_to_function "Close", "hide_modal()"
+      - call = @contact.gender == "M" ? "him" : "her"
+    - else
+      - call = "him/her"
+    = image_tag('minicon_contact.png', class: 'contact_show_tip', title: "Added to contacts since #{date_format_c(@contact.created_at)}")
+    - if @contact.status == 'active'
+      = image_tag('minicon_checked_user.png', class: 'contact_show_tip', title: "This contact is verified")
+    - if @contact.nick_name.present?
+      = image_tag('minicon_star_topic.png', class: 'contact_show_tip', title: "You can call #{call} \"#{@contact.nick_name}\"")
+    - if @contact.birth_date.present?
+      = image_tag('minicon_cake.png', class: 'contact_show_tip', title: "Born on #{date_format_c(@contact.birth_date)}")
+    %script
+      $(".contact_show_tip").tipTip({delay: 100, maxWidth: '500px', defaultPosition: 'right'})
+%div.contact_content
+  = ""
