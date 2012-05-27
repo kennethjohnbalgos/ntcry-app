@@ -67,6 +67,33 @@ class EmailAddressesController < ApplicationController
     end
     renderJS
   end
+  
+  def change_primary
+    @contact = current_user.contacts.find(params[:primary_email_form][:contact_id])
+    if @contact.present?
+      @email = @contact.email_addresses.find(params[:primary_email_form][:id])
+      if @email.present?
+        if @email.main == 0
+          sql = ActiveRecord::Base.connection()
+          sql.execute("UPDATE email_addresses SET main = 0 WHERE contact_id = #{@contact.id}")
+          @email.main = 1
+          @email.save
+          @notice = "Primary Email successfully changed"
+          @success = true
+        else
+          @notice = "Email Address is already Primary"
+          @success = false
+        end
+      else
+        @notice = "Invalid contact's Email Address"
+        @success = false
+      end
+    else
+      @notice = "Invalid contact's Email Address"
+      @success = false
+    end
+      
+  end
 
   # PUT /email_addresses/1
   # PUT /email_addresses/1.json

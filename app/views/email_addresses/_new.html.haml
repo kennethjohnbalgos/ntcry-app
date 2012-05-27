@@ -1,1 +1,11 @@
-= render 'email_addresses/form'
+%tr{id: 'new_email_form_space', class: 'hidden'}
+  = form_for :email_address, 
+    url: {controller: 'email_addresses', action: 'create'},
+    html: {id: 'add_email_form', remote: true} do |f|
+    = f.hidden_field :contact_id, value: "#{@contact.id}"
+    %td.center
+      = f.check_box :main
+    %td.left
+      = f.text_field :email
+      = f.submit 'Save', class: 'mini_button'
+      = link_to_function "Cancel", "", id: 'cancel_link'

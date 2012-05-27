@@ -25,5 +25,6 @@
       = image_tag('minicon_cake.png', class: 'contact_show_tip', title: "Born on #{date_format_c(@contact.birth_date)}")
     %script
       $(".contact_show_tip").tipTip({delay: 100, maxWidth: '500px', defaultPosition: 'right'})
+  = render partial: 'email_addresses/change_primary'
 %div.contact_content
   = render partial: "email_addresses/list"

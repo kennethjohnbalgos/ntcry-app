@@ -1,4 +1,4 @@
 %td.center
-  = radio_button_tag 'primary_contact_email', email.id, email.main == 1 ? true : false
+  = radio_button_tag 'primary_contact_email', email.id, email.main == 1 ? true : false, class: 'primary_contact_email'
 %td.left
   = email.email
