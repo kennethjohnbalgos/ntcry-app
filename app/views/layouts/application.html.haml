@@ -18,4 +18,10 @@
       = render :partial => 'dashboard/sidebar'
     %div.main
       = yield
+    - if flash[:notice]
+      - notice = flash[:notice].split("---")
+      - flash[:notice] = nil
+      - notice.each do |note|
+        %script
+          add_activity("#{raw(note)}")
     
