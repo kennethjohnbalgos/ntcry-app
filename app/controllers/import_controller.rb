@@ -19,13 +19,15 @@ class ImportController < ApplicationController
     @imported = 0
     @duplicate = 0
     
+    source = 'Google' if provider == 'gmail'
+    source = 'Yahoo' if provider == 'yahoo'
     @contacts.each do |contact|
       
       # Set Values
-      source = 'Google' if provider == 'gmail'
-      source = 'Yahoo' if provider == 'yahoo'
       email = contact[:email]
       user_id = current_user.id
+      provider = email.split("@").last
+      nick_name = email.split("@").first
       full_name = contact[:name].present? ? contact[:name] : get_name_from_email(contact[:email])
       status = contact[:name].present? ? 'active' : 'imported'
       
@@ -41,15 +43,15 @@ class ImportController < ApplicationController
             old_email.status = 'imported'
             old_email.save
           else
-            new_email = EmailAddress.create(contact_id: old_contact.id, email: email, status: 'imported', main: 1, user_id: user_id)
+            new_email = EmailAddress.create(contact_id: old_contact.id, email: email, status: 'imported', main: 1, user_id: user_id, provider: provider)
           end
           @imported += 1
         elsif validate_contact.full_name.downcase.strip == full_name.downcase.strip
           @duplicate += 1
         end 
       else
-        new_contact = Contact.create(full_name: full_name, user_id: user_id, status: status, source: source)
-        new_email = EmailAddress.create(contact_id: new_contact.id, email: email, status: 'imported', main: 1, user_id: user_id)
+        new_contact = Contact.create(nick_name: nick_name,  full_name: full_name, user_id: user_id, status: status, source: source)
+        new_email = EmailAddress.create(contact_id: new_contact.id, email: email, status: 'imported', main: 1, user_id: user_id, provider: provider)
         @imported += 1
       end
     end
