@@ -18,6 +18,7 @@ class ImportController < ApplicationController
       source = 'Google' if provider == 'gmail'
       source = 'Yahoo' if provider == 'yahoo'
       email = contact[:email]
+      user_id = current_user.id
       if contact[:name].present?
         name = contact[:name]
         status = 'active'
@@ -25,10 +26,11 @@ class ImportController < ApplicationController
         name = contact[:email].split('@').first.gsub("_"," ").gsub("."," ").titleize
         status = 'imported'
       end
-      @new_contact = Contact.create(full_name: name, user_id: current_user.id, status: status, source: source)
-      @new_email = EmailAddress.create(contact_id: @new_contact.id, email: email, status: 'imported', main: 1)
+      @new_contact = Contact.create(full_name: name, user_id: user_id, status: status, source: source)
+      @new_email = EmailAddress.create(contact_id: @new_contact.id, email: email, status: 'imported', main: 1, user_id: user_id)
       puts ">>>> New Contact: #{@new_contact.to_json}"
       puts ">>>> New Email: #{@new_email.to_json}"
     end
+    redirect_to "/"
   end
 end

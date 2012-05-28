@@ -1,16 +1,14 @@
 %table.list_view
   %tr
-    %th.center
+    %th.center{width: '25'}
       = check_box_tag 'contact_id_toggle', 0, false
     - column_name = 'full_name'
     %th.left{class: "#{'active' if @order.split(' ').first == column_name}"}
       = link_to "Name", 
         "contacts_sort?order=#{column_name} #{'DESC' if @order.split(' ').size == 1}",
         {remote: true}
-    %th.left
-      = "Email Address"
     - column_name = 'source'
-    %th.center{class: "#{'active' if @order.split(' ').first == column_name}"}
+    %th.center{class: "#{'active' if @order.split(' ').first == column_name}", width: '80'}
       = link_to "Source", 
         "contacts_sort?order=#{column_name} #{'DESC' if @order.split(' ').size == 1}",
         {remote: true}
@@ -20,4 +18,5 @@
 %script
   $(".contact_list_tip").tipTip({delay: 100, maxWidth: '500px', defaultPosition: 'left'})
   $(".contact_field_tip").tipTip({delay: 100, maxWidth: '500px', defaultPosition: 'right'})
+  $(".contact_email_tip").tipTip({delay: 100, maxWidth: '500px', defaultPosition: 'top'})
   

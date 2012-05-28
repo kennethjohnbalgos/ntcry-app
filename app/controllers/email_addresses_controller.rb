@@ -47,10 +47,10 @@ class EmailAddressesController < ApplicationController
         @success = false
       else
         if params[:email_address][:main] == "1"
-          Rails.logger.info ">>>>>>>>>> #{params[:email_address][:main]}"
           sql = ActiveRecord::Base.connection()
           sql.execute("UPDATE email_addresses SET main = 0 WHERE contact_id = #{params[:email_address][:contact_id]}")
         end
+        params[:email_address][:user_id] = current_user.id
         @email_address = EmailAddress.create(params[:email_address])
         @notice = "Email Address was successfully saved"
         @contact = get_contact_from_id(params[:email_address][:contact_id])

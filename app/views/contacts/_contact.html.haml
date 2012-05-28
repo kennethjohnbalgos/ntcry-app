@@ -12,12 +12,11 @@
       {controller: 'contacts', action: 'edit', id: contact.id}, 
       remote: true, onclick: "add_activity('Opening Update Contact window')", class: 'name_link'
   = link_to "#{contact.complete_name}", {controller: 'contacts', action: 'show', id: contact.id}, 
-    remote: true, onclick: "add_activity('Opening View Contact window')", class: 'name_link'
-  = link_to raw(image_tag('minicon_pencil.png', class: 'minicon contact_list_tip contact_inline_edit_button hidden', title: "Update this Contact")), 
+    remote: true, onclick: "add_activity('Opening View Contact window')", class: 'name_link contact_email_tip',
+    title: "#{contact.primary_email || 'No Email Address Assigned'}"
+  = link_to raw(image_tag('minicon_pencil.png', class: 'minicon contact_inline_edit_button hidden')), 
       {controller: 'contacts', action: 'edit', id: contact.id}, 
       remote: true, onclick: "add_activity('Opening Update Contact window')", class: 'name_link'
-%td.left
-  = contact.primary_email || "(No Email Address)"
 %td.center
   = contact.source
   =# link_to "View", {controller: 'contacts', action: 'show', id: contact.id}, 
