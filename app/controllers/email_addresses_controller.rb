@@ -29,18 +29,20 @@ class EmailAddressesController < ApplicationController
         @notice = "Email Address was successfully saved"
         @contact = current_user.contacts.find(params[:email_address][:contact_id])
         @contact.status = 'active'
-        @contact.save
-        if @contact.email_addresses.count == 1
-          @email_address.main = 1
-          @email_address.save
+        if @contact.save
+          if @contact.email_addresses.count == 1
+            @email_address.main = 1
+            @email_address.save
+          end
+          @email_address = nil
+          @success = true
+        else
+          @notice = "Saving failed, please verify the Email"
         end
-        @email_address = nil
-        @success = true
       end
     else
       @notice = "Please enter the Email Address"
     end
-    
     setup_address_book
     renderJS
   end
@@ -67,7 +69,6 @@ class EmailAddressesController < ApplicationController
     else
       @notice = "Invalid contact's Email Address"
     end
-    
     setup_address_book
     renderJS
   end

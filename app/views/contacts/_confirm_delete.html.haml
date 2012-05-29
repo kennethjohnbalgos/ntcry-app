@@ -7,7 +7,7 @@
 - @ids.each do |id|
   - if displayed < 10
     - displayed += 1
-    - contact = get_contact_from_id(id)
+    - contact = current_user.contacts.find(id)
     = "#{contact.full_name}"
     %br/
   - else
