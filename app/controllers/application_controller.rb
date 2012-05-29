@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  
+  before_filter :authenticate_user!
   layout :layout_by_resource
   protect_from_forgery
 
@@ -16,8 +18,11 @@ class ApplicationController < ActionController::Base
     end
   end
   
-  def get_contact_from_id(id)
-    Contact.find(id)
+  def setup_address_book
+    @order = session[:order]
+    @conditions = session[:conditions]
+    @contacts = current_user.contacts.where(@conditions).order(@order)
+    @groups = current_user.groups.order('position')
   end
 
   protected

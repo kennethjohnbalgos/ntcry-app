@@ -16,8 +16,7 @@
           = ":)"
     %div.sidebar
       = render :partial => 'dashboard/sidebar'
-    %div.main
-      = yield
+    = yield
     - if flash[:notice]
       - notice = flash[:notice].split("---")
       - flash[:notice] = nil

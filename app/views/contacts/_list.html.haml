@@ -4,7 +4,7 @@
       = check_box_tag 'contact_id_toggle', 0, false
     - column_name = 'full_name'
     %th.left{class: "#{'active' if @order.split(' ').first == column_name}"}
-      = link_to "Name", 
+      = link_to "Contact Name", 
         "contacts_sort?order=#{column_name} #{'DESC' if @order.split(' ').size == 1}",
         {remote: true}
     - column_name = 'source'
@@ -12,6 +12,7 @@
       = link_to "Source", 
         "contacts_sort?order=#{column_name} #{'DESC' if @order.split(' ').size == 1}",
         {remote: true}
+    %th
   - @contacts.each do |contact|
     %tr{class: "#{cycle('odd', 'even')} contact_entry_space", id: "contact_entry_#{contact.id}", 'data-id'=>"#{contact.id}"}
       = render :partial => 'contacts/contact', locals: {contact: contact}

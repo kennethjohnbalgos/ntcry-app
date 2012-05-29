@@ -3,6 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 $sidebar_width: 230px;
+$rightpanel_width: 180px;
 
 #dashboard{
 	overflow-y: scroll;
@@ -64,7 +65,94 @@ $sidebar_width: 230px;
 			}
 		}
 	}
-	.sidebar{
+	.right_panel {
+		width: $rightpanel_width;
+		position: fixed;
+		top: 20px;
+		right: 20px;
+	
+		background: #fafafa;
+		border: 2px solid white;
+		border-left: none;
+		border-top: none;
+		padding: 5px 10px;
+		text-align: right;
+		box-shadow: 1px 2px 6px rgba(0, 0, 0, 0.5);
+		-moz-box-shadow: 1px 2px 6px rgba(0,0,0, 0.5);
+		-webkit-box-shadow: 1px 2px 6px rgba(0, 0, 0, 0.5);
+		
+		div.title {
+			width: 180px;
+			text-align: center;
+			margin: 10px auto 40px;
+			height: 30px;
+			font-family: 'Give You Glory';
+			font-size: 50px;
+			line-height: 50px;
+			font-weight: bold;
+			div.subtitle {
+				text-align: left;
+				margin-top: -26px;
+				margin-left: 5px;
+				font-family: 'Questrial';
+				font-size: 11px;
+				color: #666;
+			}
+		}
+		
+		a {
+			font-size: 16px;
+			margin-right: 5px;
+			text-align: right;
+		}
+		
+		#activity {
+			margin: 25px 0 0;
+			text-align: center;
+		}
+		
+		div.header {
+			padding: 0;
+			text-align: left;
+			div.main_title {
+				text-align: left;
+				line-height: 40px;
+				color: #333;
+				margin: 0px;
+				display: inline-block;
+				opacity: 0.9;
+				font-weight: normal;
+				font-size: 40px;
+			}
+		
+			div.head_options {
+				padding: 0;
+				a.head_link {
+					float: right;
+					div.link_space {
+						margin: 0 0 0 10px;
+						height: 45px;
+						text-align: center;
+						color: #555;
+						font-size: 12px;
+						line-height: 12px;
+						img.icon {
+							width: 25px;
+							height: 25px;
+						}
+						&:hover {
+							opacity: 0.8;
+							color: #555;
+						}
+					}
+					&:hover {
+						color: #555;
+					}
+				}
+			}
+		}
+	}
+	.sidebar {
 		z-index: 1500;
 		width: $sidebar_width;
 		position: fixed;
@@ -112,9 +200,15 @@ $sidebar_width: 230px;
 		}
 	}
 	.main {
+		
 		margin: 20px;
 		margin-left: $sidebar_width + 60;
 		min-height: 500px;
+	
+		&.with_rightpanel {
+			margin-left: $sidebar_width + 60;
+			margin-right: $rightpanel_width + 60;
+		}
 	
 		background: #fafafa;
 		border: 2px solid white;
@@ -128,12 +222,13 @@ $sidebar_width: 230px;
 		
 		div.header {
 			padding: 0;
+			text-align: left;
 			div.main_title {
-				float: left;
 				text-align: left;
 				line-height: 40px;
 				color: #333;
 				margin: 0px;
+				display: inline-block;
 				opacity: 0.9;
 				font-weight: normal;
 				font-size: 40px;
@@ -142,10 +237,10 @@ $sidebar_width: 230px;
 			div.head_options {
 				padding: 0;
 				a.head_link {
+					float: right;
 					div.link_space {
 						margin: 0 0 0 10px;
 						height: 45px;
-						float: right;
 						text-align: center;
 						color: #555;
 						font-size: 12px;

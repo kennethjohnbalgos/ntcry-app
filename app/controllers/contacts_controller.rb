@@ -1,14 +1,10 @@
 class ContactsController < ApplicationController
-  before_filter :authenticate_user!
-  # GET /contacts
-  # GET /contacts.json
+  
   def index
-    
     session[:order] = "first_name" unless session[:order].present?
-    @order = session[:order]
-    session[:conditions] = "user_id = #{current_user.id} AND status <> 'deleted'" unless session[:conditions].present?
-    @conditions = session[:conditions]
-    @contacts = Contact.where(@conditions).order(@order)
+    session[:conditions] = "status <> 'deleted'" unless session[:conditions].present?
+    
+    setup_address_book
     renderHTML(@contacts)
   end
   
@@ -57,10 +53,7 @@ class ContactsController < ApplicationController
       @contact = Contact.new 
     end
     
-    @order = session[:order]
-    @conditions = session[:conditions]
-    @contacts = Contact.where(@conditions).order(@order)
-    
+    setup_address_book
     renderJS
   end
 
@@ -78,10 +71,7 @@ class ContactsController < ApplicationController
     
     @add_another = params[:extra_add_another]
     
-    @order = session[:order]
-    @conditions = session[:conditions]
-    @contacts = Contact.where(@conditions).order(@order)
-    
+    setup_address_book
     renderJS
   end
   
@@ -97,10 +87,8 @@ class ContactsController < ApplicationController
     sql.execute("UPDATE contacts SET status = 'deleted' WHERE id IN (#{@ids_raw})")
     
     @notice = "Selected contacts successfully deleted"
-    @order = session[:order]
-    @conditions = session[:conditions]
-    @contacts = Contact.where(@conditions).order(@order)
     
+    setup_address_book
     renderJS
   end
 

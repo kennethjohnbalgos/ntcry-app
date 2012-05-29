@@ -14,12 +14,4 @@ module ApplicationHelper
     date.to_date.strftime("%B %d, %Y")
   end
   
-  def get_contact_from_id(id)
-    Contact.find(id)
-  end
-  
-  def get_email_from_id(id)
-    EmailAddress.find(id)
-  end
-  
 end
