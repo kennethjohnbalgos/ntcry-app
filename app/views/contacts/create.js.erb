@@ -1,6 +1,10 @@
-$("div#results").html("<%= escape_javascript(render :partial => 'list', locals: {contacts: @contacts}) %>"); 
-<% if @add_another.to_i == 0 %>
-	show_modal("<%= escape_javascript(render :partial => 'show', locals: {contact: @contact}) %>","<%= @notice %>");
+<% if @success %>
+	$("div#results").html("<%= escape_javascript(render :partial => 'contacts/list', locals: {contacts: @contacts}) %>"); 
+	<% if @add_another.to_i == 0 %>
+		show_modal("<%= escape_javascript(render :partial => 'show', locals: {contact: @contact}) %>","<%= @notice %>");
+	<% else %>
+		show_modal("<%= escape_javascript(render :partial => 'new') %>","<%= @notice %>")
+	<% end %>
 <% else %>
-	show_modal("<%= escape_javascript(render :partial => 'new') %>","<%= @notice %>")
+	add_activity("<%= @notice %>")
 <% end %>

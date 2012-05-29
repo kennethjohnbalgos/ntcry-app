@@ -1,0 +1,8 @@
+%div.header
+  %div.head_options
+    = link_to right_icon_link('icon_plus.png','Add'), new_group_path,
+      class: 'head_link', remote: true, onclick: "add_activity('Opening Add Group window')"
+  %div.main_title
+    = "Groups"
+  %div.group_space
+    = render partial: 'groups/list'

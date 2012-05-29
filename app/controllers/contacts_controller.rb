@@ -30,9 +30,16 @@ class ContactsController < ApplicationController
   end
 
   def create
-    @contact = current_user.contacts.create(params[:contact].merge(source: 'Noticery', source_reference: ''))
-    @notice = 'Contact was successfully created'
-    @contact = Contact.new if params[:extra_add_another] == '1'
+    @contact = current_user.contacts.new(params[:contact].merge(source: 'Noticery', source_reference: ''))
+    if @contact.save
+      @add_another = params[:extra_add_another]
+      @group = Contact.new if @add_another == '1'
+      @notice = 'Contact was successfully created'
+      @success = true
+    else
+      @contact = 'Saving failed, please verify the fields'
+      @success = false
+    end
     setup_address_book
     renderJS
   end

@@ -219,6 +219,15 @@ div.super_field {
 	input[type=email], input[type=text], input[type=password] {
 		padding: 5px;
 		font-size: 22px;
+		width: 340px;
+		border: 1px solid #CCC;
+	}
+	textarea {
+		padding: 5px;
+		width: 340px;
+		height: 75px;
+		resize: none;
+		font-size: 22px;
 		border: 1px solid #CCC;
 	}
 	.remember_me {

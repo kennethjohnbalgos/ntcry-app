@@ -21,36 +21,32 @@ class GroupsController < ApplicationController
     end
   end
 
-  # GET /groups/new
-  # GET /groups/new.json
   def new
     @group = Group.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @group }
-    end
+    renderJS
   end
 
   # GET /groups/1/edit
   def edit
     @group = Group.find(params[:id])
+    renderJS
   end
-
-  # POST /groups
-  # POST /groups.json
+  
   def create
-    @group = Group.new(params[:group])
-
-    respond_to do |format|
-      if @group.save
-        format.html { redirect_to @group, notice: 'Group was successfully created.' }
-        format.json { render json: @group, status: :created, location: @group }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @group.errors, status: :unprocessable_entity }
-      end
+    position = current_user.groups.count + 1
+    @group = current_user.groups.new(params[:group].merge(position: position))
+    if @group.save
+      @add_another = params[:extra_add_another]
+      @group = Group.new if @add_another == '1'
+      @notice = 'Group was successfully created'
+      @success = true
+    else
+      @notice = 'Saving failed, please verify the fields'
+      @success = false
     end
+    
+    setup_address_book
+    renderJS
   end
 
   # PUT /groups/1

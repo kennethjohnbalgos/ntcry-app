@@ -1,0 +1,10 @@
+<% if @success %>
+	$("div#groups").html("<%= escape_javascript(render :partial => 'groups/group_list', locals: {groups: @groups}) %>"); 
+	<% if @add_another.to_i == 2 %>
+		hide_modal("<%= @notice %>");
+	<% else %>
+		show_modal("<%= escape_javascript(render :partial => 'groups/new') %>","<%= @notice %>")
+	<% end %>
+<% else %>
+	add_activity("<%= @notice %>")
+<% end %>

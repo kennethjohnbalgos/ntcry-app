@@ -1,25 +1,27 @@
-= form_for @group do |f|
+= form_for @group, validate: true, html: {id: 'group_form', remote: true} do |f|
   -if @group.errors.any?
     #error_explanation
       %h2= "#{pluralize(@group.errors.count, "error")} prohibited this group from being saved:"
       %ul
         - @group.errors.full_messages.each do |msg|
           %li= msg
-
-  .field
-    = f.label :user_id
-    = f.number_field :user_id
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :description
-    = f.text_field :description
-  .field
-    = f.label :position
-    = f.number_field :position
-  .field
-    = f.label :user_access
-    = f.text_field :user_access
-  .actions
-    = f.submit 'Save'
+  %div.super_field
+    %div.error_space
+    = f.label :name, "Group Name"
+    %br/
+    %span.field_space
+      = f.text_field :name, autocomplete: 'off'
+  %div.super_field
+    %div.error_space
+    = f.label :description, "Short Description"
+    %br/
+    %span.field_space
+      = f.text_area :description, autocomplete: 'off'
+  = text_field_tag 'extra_add_another', '', class: 'hidden'
+  %div.super_field
+    %div.submit
+      = f.submit "Save and Close", class: 'button', onclick: "$('#extra_add_another').val(2); return false;", id: 'group_form_submit'
+      - if params[:action] == 'new' || params[:action] == 'create'
+        = f.submit "Save and Add Another", class: 'button', onclick: "$('#extra_add_another').val(1); return false;", id: 'group_form_submit'
+%script
+  $('form#group_form').validate();
