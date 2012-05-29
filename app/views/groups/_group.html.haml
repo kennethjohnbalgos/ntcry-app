@@ -1,4 +1,5 @@
-%td.center
-  = check_box_tag 'ids[]', group.id, false, id: "group_id_#{group.id}", class: 'group_id_checkbox'
 %td.left
-  = "#{group.name}"
+  = image_tag("minicon_group.png", class: 'minicon_nohover')
+  = "#{group.name} (#{group.group_contacts.count})"
+%td
+  = ""

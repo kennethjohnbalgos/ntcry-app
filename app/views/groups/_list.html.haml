@@ -1,10 +1,4 @@
 %table.list_view
-  %tr
-    %th.center{width: '25'}
-      = check_box_tag 'group_id_toggle', 0, false
-    %th.left
-      = "Contact Name"
-    %th
   - @groups.each do |group|
     %tr{class: "#{cycle('odd', 'even')} group_entry_space", id: "group_entry_#{group.id}", 'data-id'=>"#{group.id}"}
       = render :partial => 'groups/group', locals: {group: group}

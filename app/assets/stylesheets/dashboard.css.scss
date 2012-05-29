@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 $sidebar_width: 230px;
-$rightpanel_width: 180px;
+$rightpanel_width: 200px;
 
 #dashboard{
 	overflow-y: scroll;
@@ -66,20 +66,23 @@ $rightpanel_width: 180px;
 		}
 	}
 	.right_panel {
-		width: $rightpanel_width;
+		width: $rightpanel_width + 20;
 		position: fixed;
 		top: 20px;
 		right: 20px;
-	
-		background: #fafafa;
-		border: 2px solid white;
-		border-left: none;
-		border-top: none;
-		padding: 5px 10px;
-		text-align: right;
-		box-shadow: 1px 2px 6px rgba(0, 0, 0, 0.5);
-		-moz-box-shadow: 1px 2px 6px rgba(0,0,0, 0.5);
-		-webkit-box-shadow: 1px 2px 6px rgba(0, 0, 0, 0.5);
+		
+		.panel {
+			background: #fafafa;
+			border: 2px solid white;
+			border-left: none;
+			border-top: none;
+			padding: 10px;
+			margin: 0 0 20px 0;
+			text-align: right;
+			box-shadow: 1px 2px 6px rgba(0, 0, 0, 0.5);
+			-moz-box-shadow: 1px 2px 6px rgba(0,0,0, 0.5);
+			-webkit-box-shadow: 1px 2px 6px rgba(0, 0, 0, 0.5);
+		}
 		
 		div.title {
 			width: 180px;
@@ -116,13 +119,14 @@ $rightpanel_width: 180px;
 			text-align: left;
 			div.main_title {
 				text-align: left;
-				line-height: 40px;
+				line-height: 24px;
 				color: #333;
 				margin: 0px;
 				display: inline-block;
 				opacity: 0.9;
 				font-weight: normal;
-				font-size: 40px;
+				font-size: 24px;
+				margin-bottom: 5px;
 			}
 		
 			div.head_options {
@@ -130,15 +134,16 @@ $rightpanel_width: 180px;
 				a.head_link {
 					float: right;
 					div.link_space {
-						margin: 0 0 0 10px;
-						height: 45px;
+						margin: 5px -5px 0 10px;
+						height: 16px;
 						text-align: center;
 						color: #555;
 						font-size: 12px;
-						line-height: 12px;
+						line-height: 10px;
 						img.icon {
-							width: 25px;
-							height: 25px;
+							margin: 0 3px -4px 0;
+							width: 16px;
+							height: 16px;
 						}
 						&:hover {
 							opacity: 0.8;
@@ -214,7 +219,7 @@ $rightpanel_width: 180px;
 		border: 2px solid white;
 		border-left: none;
 		border-top: none;
-		padding: 5px 10px;
+		padding: 10px;
 		text-align: right;
 		box-shadow: 1px 2px 6px rgba(0, 0, 0, 0.5);
 		-moz-box-shadow: 1px 2px 6px rgba(0,0,0, 0.5);
